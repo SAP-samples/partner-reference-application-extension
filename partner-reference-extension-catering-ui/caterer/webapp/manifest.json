@@ -1,0 +1,202 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "caterer",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "${project.version}"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.16.2",
+      "toolsId": "240197fd-1516-46e1-979c-e33f3ae275c4"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/poetryslamcaterer/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    },
+    "ach": "pre-cat"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "${sap.ui5.dist.version}",
+      "libs": {
+        "sap.m": {
+          "lazy": false
+        },
+        "sap.ui.core": {
+          "lazy": false
+        },
+        "sap.fe.templates": {
+          "lazy": false
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "caterer.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "x_CaterersList",
+          "target": "x_CaterersList"
+        },
+        {
+          "pattern": "x_Caterers({key}):?query:",
+          "name": "x_CaterersObjectPage",
+          "target": "x_CaterersObjectPage"
+        }
+      ],
+      "targets": {
+        "x_CaterersList": {
+          "type": "Component",
+          "id": "x_CaterersList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/x_Caterers",
+              "variantManagement": "Page",
+              "navigation": {
+                "x_Caterers": {
+                  "detail": {
+                    "route": "x_CaterersObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "selectionMode": "Single",
+                    "condensedTableLayout": true,
+                    "headerVisible": true,
+                    "quickVariantSelection": {
+                      "hideTableTitle": false,
+                      "showCounts": true
+                    },
+                    "widthIncludingColumnHeader": false,
+                    "personalization": {
+                      "column": true
+                    }
+                  },
+                  "columns": {
+                    "DataField::name": {
+                      "width": "20%"
+                    },
+                    "DataField::cuisine::name": {
+                      "width": "20%"
+                    },
+                    "DataField::maxServiceCapacity": {
+                      "width": "25%"
+                    },
+                    "DataField::createdAt": {
+                      "width": "20%"
+                    }
+                  }
+                }
+              },
+              "initialLoad": "Enabled"
+            }
+          }
+        },
+        "x_CaterersObjectPage": {
+          "type": "Component",
+          "id": "x_CaterersObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/x_Caterers",
+              "content": {
+                "header": {
+                  "visible": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [
+      "caterer"
+    ],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "macros": {
+      "table": {
+        "defaultCreationMode": "InlineCreationRows"
+      }
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "caterer"
+  }
+}

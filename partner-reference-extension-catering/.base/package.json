@@ -1,0 +1,8 @@
+{
+  "name": "partner-reference-application",
+  "cds": {
+    "requires": {
+      "cds.xt.ExtensibilityService": {}
+    }
+  }
+}
