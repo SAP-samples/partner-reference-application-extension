@@ -7,6 +7,7 @@ In the dynamic landscape of multi-tenant SaaS applications, extensibility is cru
 The Partner Reference Application Extension repository demonstrates how to achieve this crucial flexibility by extending the [Poetry Slam Manager](https://github.com/SAP-samples/partner-reference-application.git) with enhanced catering management capabilities. By leveraging the SAP Business Technology Platform (SAP BTP) and the SAP Cloud Application Programming Model (CAP), this extension acts as a "golden path" for partners. It enables partners to build extensions that address the unique needs of individual customers while preserving the core application's functionality for other tenants and adhering to SAP standards for scalability, security, and enterprise readiness.
 
 It showcases the platform's flexibility and extensibility with features such as:
+
 - Seamless integration with the base application,
 - Granular tenant-specific configurations to deliver personalized experiences,
 - Consistent user experience across extended and core functionality,
@@ -25,7 +26,7 @@ and SAP Business ByDesign
 
 ### About the Sample Extension _Catering Management_
 
-Imagine you are an event manager at Gourmet Pages, a company renowned for organizing high-profile poetry slams that seamlessly blend spoken word artistry with gourmet catering experiences.
+Imagine you are an event manager at Gourmet Poetry, a company renowned for organizing high-profile poetry slams that seamlessly blend spoken word artistry with gourmet catering experiences.
 
 While the base Poetry Slam Manager (PSM) application helps you manage events and attendees, you face additional complexities in selecting, tracking, and coordinating with caterers for your events.
 
@@ -35,7 +36,7 @@ Here the event manager has to organize the catering for the event registered in 
     <img src="./Tutorials/images/00_Gourmet_page_persona.png" width="40%">  
 </p>
 
-While Gourmet Pages views catering as an essential component of their events, other customers may not require this functionality. The extension is designed to accommodate both scenarios seamlessly,
+While Gourmet Poetry views catering as an essential component of their events, other customers may not require this functionality. The extension is designed to accommodate both scenarios seamlessly,
 enabling tenant-specific configurations without disrupting the core application's functionality for other users.
 
 
@@ -57,13 +58,13 @@ The Catering Management Extension provides:
 This extension ensures a unified experience for managing both poetry slams and gourmet catering, allowing you to elevate event quality while streamlining operational workflows.
 
 <p align="center">
-    <img src="./Tutorials/images/00_psm-to-pre-integration.png" width="60%">  
+    <img src="./Tutorials/images/00_pra_pre_architecture.png" width="60%">  
 </p>
 
 The sample showcases how a side-by-side application benefits from using SAP BTP. The qualities relevant for enterprise-grade partner applications, supported by SAP BTP services and programming models, include
 
 <p align="center">
-    <img src="./Tutorials/images/00_End-User_Flow-Marco.png" width="60%">  
+    <img src="./Tutorials/images/00_end_user_representation.png" width="60%">  
 </p>
 
 ### Features
@@ -123,4 +124,4 @@ This repository is provided "as-is", we don't offer support. For questions and c
 
 ## License
 
-Copyright (c) 2024 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
+Copyright (c) 2025 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.

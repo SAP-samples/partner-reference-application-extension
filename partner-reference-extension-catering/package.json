@@ -3,7 +3,7 @@
   "extends": "partner-reference-application",
   "version": "1.0.0",
   "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
+  "repository": "github.com/SAP-samples/partner-reference-application-extension.git",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {

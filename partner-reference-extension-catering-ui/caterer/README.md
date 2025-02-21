@@ -7,7 +7,7 @@
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>File|
-|**Metadata File**<br>poetryslam.edmx|
+|**Metadata File**<br>PoetrySlamService.edmx|
 |**Module Name**<br>caterer|
 |**Application Title**<br>Caterer UI|
 |**Namespace**<br>|
@@ -39,5 +39,3 @@ An SAP Fiori application.
 #### Pre-requisites:
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
-
-

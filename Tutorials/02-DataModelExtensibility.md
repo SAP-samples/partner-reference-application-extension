@@ -1,6 +1,6 @@
 # Extending Persistence and UI with Custom Fields
 
-The Partner Reference Application Extension is an extension of the *Poetry Slam Manager (PSM)*, designed to extend its business capabilities. This tutorial shows you how ro customize the PSM to enable caterer selection for a poetry slam event.
+The Partner Reference Application Extension is an extension of the *Poetry Slam Manager (PSM)*, designed to extend its business capabilities. This tutorial shows you how to customize the PSM to enable caterer selection for a poetry slam event.
 
 As an event manager, you can assign a caterer responsible for providing food services. To achieve this, you create a new custom entity called *Caterer* to store caterer details and extend the *Poetry Slam* entity by establishing an association with it. Additionally, you extend the *Poetry Slam* service to expose the new entity. A new section group is added to the existing *Poetry Slam* object page, allowing you to select a caterer. Once you choose a caterer, their contact information is displayed in the newly added section.
 
@@ -26,14 +26,16 @@ You need to create extension projects, which are standard SAP CAP-based projects
 
     ```json
     {
+      ...
       "extends": "partner-reference-application",
       "workspaces": [
         ".base"
       ]
+      ...
     }
     ```
 
-    - `extends` is the name used by the extension model to reference the base model. It must be a valid npm package name, as it is utilized by `cds pull` as the package name for the base model.
+    - `extends` is the identifier used by the extension model to reference the base model. It must be a valid base application name, as it serves as the package name for the base model when executing `cds pull`.
     - `workspaces` is a list of folders, including the one where the base model is stored. If not already present, the `cds pull` command will automatically add this property to ensure proper configuration.
 
 ## Assign Extension Developer Role
@@ -72,9 +74,9 @@ The following section explains how to retrieve the model from the running applic
     cds login <PROVIDER-MTX-APP-URL> -s <SUBSCRIBER-SUBDOMAIN>
     ```
 
-    > Note: The one-time passcode will be prompted interactively after running the above command. 
+    > Note: The one-time passcode will be prompted interactively after running the above command.
 
-    If you need to automatically call cds login without user interaction, you can use the *Client Credentials* grant. This approach does not require a passcode and is ideal for scenarios where user authentication is not necessary. The Client Credentials grant provides an application with access to resources in a service without needing individual user consent.
+    If you need to automatically call cds login without user interaction, you can use the *Client Credentials* grant. This approach does not require a passcode and is ideal for scenarios where user authentication is not necessary. The Client Credentials grant provides an application with access to resources in a service without needing individual user consent. This approach is not recommended and should only be used if logging in without user context is explicitly required.
 
     1. Get the *Client Credentials* of the MTX module deployed in the provider subaccount.
 
@@ -118,8 +120,7 @@ It is not mandatory to split the extension model into multiple files; however, w
 
     > Note: For more details on extending data model, refer to the [CAPire Documentation - Extending the Data Model](https://cap.cloud.sap/docs/guides/extensibility/customization#extending-the-data-model)
 
-    1. Create a file [catererManager.cds](../partner-reference-extension-catering/db/catererManager.cds) in the */db* folder, which will reference all the entity definitions (cds-file of the database).
-    2. In the sample extension application, you will create a new entity called *x_Caterers* and extend the existing *PoetrySlams* entity by adding an association to it.
+    1. In the sample extension application, you will create a new entity called *x_Caterers* and extend the existing *PoetrySlams* entity by adding an association to it.
 
         ```cds
         ...
@@ -129,6 +130,8 @@ It is not mandatory to split the extension model into multiple files; however, w
         }
         ...
         ```
+
+    2. Create a file [catererManager.cds](../partner-reference-extension-catering/db/catererManager.cds) in the */db* folder, which will reference all the entity definitions (cds-file of the database).
 
         > Note: The prefix `x_` is added to entities, namespaces, or fields based on the configuration defined during extensibility enablement in the base application. This ensures that artifacts created in the extended application do not conflict with those in the base application, maintaining consistency and avoiding naming collisions. For more information, refer to the [Partner Reference Application Tutorial - Poetry Slam Manager Application with extensibility](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/50-Multi-Tenancy-Features-Tenant-Extensibility.md#application-enablement).
 
@@ -140,8 +143,7 @@ It is not mandatory to split the extension model into multiple files; however, w
 
     > Note: For more details on extending service model, refer to the [CAPire Documentation - Extending the Service Model](https://cap.cloud.sap/docs/guides/extensibility/customization#extending-the-service-model).
 
-    1. Create a file called [catererManagerService.cds](../partner-reference-extension-catering/srv/catererManagerService.cds) in the */srv* folder, which will reference all the service definitions (cds-file of the service).
-    2. New entities are automatically exposed in a read-only manner. If you need to change this behavior, you must explicitly expose them
+    1. New entities are automatically exposed in a read-only manner. If you need to change this behavior, you must explicitly expose them
 
         ```cds
         ...
@@ -151,15 +153,15 @@ It is not mandatory to split the extension model into multiple files; however, w
         ...
         ```
 
+    2. Create a file called [catererManagerService.cds](../partner-reference-extension-catering/srv/catererManagerService.cds) in the */srv* folder, which will reference all the service definitions (cds-file of the service).
+
         > Note: For more details on defining services, refer to the [Partner Reference Application Tutorial - Define Services](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/14-Develop-Core-Application.md#define-services).
 
 3. Extending UI Annotations
 
     Once you have defined the domain and service model, you extend UI annotations. Extending UI annotations in SAP CAP Extension Development allows you to customize and enhance the user interface of a base application without altering its core functionality. This can involve adding new UI elements such as sections, fields, and tables, modifying existing annotations, adjusting field visibility and read-only status, and defining value helps or lists. You can also reorganize the layout of pages, configure smart tables and forms, and add action buttons. By using the `extend` directive in CDS models, you can seamlessly introduce customizations, improve user experience, and ensure flexibility in adapting to business requirements while maintaining the integrity of the original application.
 
-    1. Create a file called [catererManager.cds](../partner-reference-extension-catering/app/catererManager.cds) in the */app* folder, which will reference all the UI annotations (cds-file of the UI).
-
-    2. In the sample extension application, you will add a new *Caterer* section between the *General* and *Visitors* sections using the `... up to` and `...` keywords. This can be accomplished by [CAPire Documentation - Extending Array Values](https://cap.cloud.sap/docs/guides/extensibility/customization#extending-array-values). The following code demonstrates how to seamlessly insert a new UI facet between the existing facets in the base application, enhancing its functionality while preserving the integrity of the current layout.
+    1. In the sample extension application, you will add a new *Caterer* section between the *General* and *Visitors* sections using the `... up to` and `...` keywords. This can be accomplished by [CAPire Documentation - Extending Array Values](https://cap.cloud.sap/docs/guides/extensibility/customization#extending-array-values). The following code demonstrates how to seamlessly insert a new UI facet between the existing facets in the base application, enhancing its functionality while preserving the integrity of the current layout.
 
         ```cds
         ...
@@ -179,6 +181,8 @@ It is not mandatory to split the extension model into multiple files; however, w
         );
         ...
         ```
+
+    2. Create a file called [catererManager.cds](../partner-reference-extension-catering/app/catererManager.cds) in the */app* folder, which will reference all the UI annotations (cds-file of the UI).
 
         > Note: For more details on extending UI annotations, refer to the [CAPire Documentation - Extending UI Annotations](https://cap.cloud.sap/docs/guides/extensibility/customization#extending-ui-annotations).
 

@@ -1,0 +1,2355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+    <edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Measures.V1.xml">
+    <edmx:Include Alias="Measures" Namespace="Org.OData.Measures.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/PersonalData.xml">
+    <edmx:Include Alias="PersonalData" Namespace="com.sap.vocabularies.PersonalData.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+    <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="PoetrySlamService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <Annotation Term="Core.Links">
+        <Collection>
+          <Record>
+            <PropertyValue Property="rel" String="author"/>
+            <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+          </Record>
+        </Collection>
+      </Annotation>
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="PoetrySlams" EntityType="PoetrySlamService.PoetrySlams">
+          <NavigationPropertyBinding Path="visitorsFeeCurrency" Target="Currencies"/>
+          <NavigationPropertyBinding Path="status" Target="PoetrySlamStatusCodes"/>
+          <NavigationPropertyBinding Path="visits" Target="Visits"/>
+          <NavigationPropertyBinding Path="x_caterer" Target="x_Caterers"/>
+          <NavigationPropertyBinding Path="toByDProject" Target="ByDProjects"/>
+          <NavigationPropertyBinding Path="toS4HCProject" Target="S4HCProjects"/>
+          <NavigationPropertyBinding Path="toB1PurchaseOrder" Target="B1PurchaseOrder"/>
+          <NavigationPropertyBinding Path="SiblingEntity" Target="PoetrySlams"/>
+        </EntitySet>
+        <EntitySet Name="PrintQueues" EntityType="PoetrySlamService.PrintQueues"/>
+        <EntitySet Name="Visitors" EntityType="PoetrySlamService.Visitors">
+          <NavigationPropertyBinding Path="visits" Target="Visits"/>
+        </EntitySet>
+        <EntitySet Name="Visits" EntityType="PoetrySlamService.Visits">
+          <NavigationPropertyBinding Path="parent" Target="PoetrySlams"/>
+          <NavigationPropertyBinding Path="visitor" Target="Visitors"/>
+          <NavigationPropertyBinding Path="status" Target="VisitStatusCodes"/>
+          <NavigationPropertyBinding Path="SiblingEntity" Target="Visits"/>
+        </EntitySet>
+        <EntitySet Name="PDFDocument" EntityType="PoetrySlamService.PDFDocument"/>
+        <EntitySet Name="Currencies" EntityType="PoetrySlamService.Currencies">
+          <NavigationPropertyBinding Path="texts" Target="Currencies_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="Currencies_texts"/>
+        </EntitySet>
+        <EntitySet Name="Language" EntityType="PoetrySlamService.Language">
+          <NavigationPropertyBinding Path="texts" Target="Language_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="Language_texts"/>
+        </EntitySet>
+        <EntitySet Name="ByDProjects" EntityType="PoetrySlamService.ByDProjects"/>
+        <EntitySet Name="S4HCProjects" EntityType="PoetrySlamService.S4HCProjects"/>
+        <EntitySet Name="B1PurchaseOrder" EntityType="PoetrySlamService.B1PurchaseOrder"/>
+        <EntitySet Name="PoetrySlamStatusCodes" EntityType="PoetrySlamService.PoetrySlamStatusCodes">
+          <NavigationPropertyBinding Path="texts" Target="PoetrySlamStatusCodes_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="PoetrySlamStatusCodes_texts"/>
+        </EntitySet>
+        <EntitySet Name="VisitStatusCodes" EntityType="PoetrySlamService.VisitStatusCodes">
+          <NavigationPropertyBinding Path="texts" Target="VisitStatusCodes_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="VisitStatusCodes_texts"/>
+        </EntitySet>
+        <EntitySet Name="x_Caterers" EntityType="PoetrySlamService.x_Caterers">
+          <NavigationPropertyBinding Path="cuisine" Target="x_CuisineTypeCodes"/>
+          <NavigationPropertyBinding Path="SiblingEntity" Target="x_Caterers"/>
+        </EntitySet>
+        <EntitySet Name="x_CuisineTypeCodes" EntityType="PoetrySlamService.x_CuisineTypeCodes">
+          <NavigationPropertyBinding Path="texts" Target="x_CuisineTypeCodes_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="x_CuisineTypeCodes_texts"/>
+        </EntitySet>
+        <EntitySet Name="Currencies_texts" EntityType="PoetrySlamService.Currencies_texts"/>
+        <EntitySet Name="Language_texts" EntityType="PoetrySlamService.Language_texts"/>
+        <EntitySet Name="PoetrySlamStatusCodes_texts" EntityType="PoetrySlamService.PoetrySlamStatusCodes_texts"/>
+        <EntitySet Name="VisitStatusCodes_texts" EntityType="PoetrySlamService.VisitStatusCodes_texts"/>
+        <EntitySet Name="x_CuisineTypeCodes_texts" EntityType="PoetrySlamService.x_CuisineTypeCodes_texts"/>
+        <FunctionImport Name="userInfo" Function="PoetrySlamService.userInfo"/>
+        <ActionImport Name="createTestData" Action="PoetrySlamService.createTestData"/>
+      </EntityContainer>
+      <EntityType Name="PoetrySlams">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="number" Type="Edm.String" MaxLength="255"/>
+        <Property Name="title" Type="Edm.String" MaxLength="255"/>
+        <Property Name="description" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="dateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="maxVisitorsNumber" Type="Edm.Int32"/>
+        <Property Name="freeVisitorSeats" Type="Edm.Int32"/>
+        <Property Name="visitorsFeeAmount" Type="Edm.Decimal" Precision="6" Scale="2"/>
+        <NavigationProperty Name="visitorsFeeCurrency" Type="PoetrySlamService.Currencies">
+          <ReferentialConstraint Property="visitorsFeeCurrency_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="visitorsFeeCurrency_code" Type="Edm.String" MaxLength="3"/>
+        <NavigationProperty Name="status" Type="PoetrySlamService.PoetrySlamStatusCodes">
+          <ReferentialConstraint Property="status_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="status_code" Type="Edm.Int32" DefaultValue="1"/>
+        <NavigationProperty Name="visits" Type="Collection(PoetrySlamService.Visits)" Partner="parent">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <Property Name="projectID" Type="Edm.String"/>
+        <Property Name="projectObjectID" Type="Edm.String"/>
+        <Property Name="projectURL" Type="Edm.String"/>
+        <Property Name="projectSystem" Type="Edm.String"/>
+        <Property Name="purchaseOrderID" Type="Edm.String"/>
+        <Property Name="purchaseOrderObjectID" Type="Edm.String"/>
+        <Property Name="purchaseOrderURL" Type="Edm.String"/>
+        <Property Name="purchaseOrderSystem" Type="Edm.String"/>
+        <NavigationProperty Name="x_caterer" Type="PoetrySlamService.x_Caterers">
+          <ReferentialConstraint Property="x_caterer_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="x_caterer_ID" Type="Edm.Guid"/>
+        <Property Name="bookedSeats" Type="Edm.Int32"/>
+        <Property Name="statusCriticality" Type="Edm.Int32"/>
+        <Property Name="projectSystemName" Type="Edm.String"/>
+        <Property Name="createByDProjectEnabled" Type="Edm.Boolean"/>
+        <Property Name="isByD" Type="Edm.Boolean"/>
+        <Property Name="createS4HCProjectEnabled" Type="Edm.Boolean"/>
+        <Property Name="projectProfileCodeText" Type="Edm.String"/>
+        <Property Name="processingStatusText" Type="Edm.String"/>
+        <Property Name="isS4HC" Type="Edm.Boolean"/>
+        <Property Name="createB1PurchaseOrderEnabled" Type="Edm.Boolean"/>
+        <Property Name="purchaseOrderSystemName" Type="Edm.String"/>
+        <Property Name="isB1" Type="Edm.Boolean"/>
+        <NavigationProperty Name="toByDProject" Type="PoetrySlamService.ByDProjects"/>
+        <NavigationProperty Name="toS4HCProject" Type="PoetrySlamService.S4HCProjects"/>
+        <NavigationProperty Name="toB1PurchaseOrder" Type="PoetrySlamService.B1PurchaseOrder"/>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="PoetrySlamService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="PoetrySlamService.PoetrySlams"/>
+      </EntityType>
+      <EntityType Name="PrintQueues">
+        <Key>
+          <PropertyRef Name="name"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" Nullable="false"/>
+        <Property Name="descr" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Visitors">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="email" Type="Edm.String"/>
+        <NavigationProperty Name="visits" Type="Collection(PoetrySlamService.Visits)" Partner="visitor"/>
+      </EntityType>
+      <EntityType Name="Visits">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <NavigationProperty Name="parent" Type="PoetrySlamService.PoetrySlams" Partner="visits">
+          <ReferentialConstraint Property="parent_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="parent_ID" Type="Edm.Guid"/>
+        <NavigationProperty Name="visitor" Type="PoetrySlamService.Visitors" Partner="visits">
+          <ReferentialConstraint Property="visitor_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="visitor_ID" Type="Edm.Guid"/>
+        <Property Name="artistIndicator" Type="Edm.Boolean" DefaultValue="false"/>
+        <NavigationProperty Name="status" Type="PoetrySlamService.VisitStatusCodes">
+          <ReferentialConstraint Property="status_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="status_code" Type="Edm.Int32"/>
+        <Property Name="statusCriticality" Type="Edm.Int32"/>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="PoetrySlamService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="PoetrySlamService.Visits"/>
+      </EntityType>
+      <EntityType Name="PDFDocument">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="content" Type="Edm.Stream"/>
+        <Property Name="mediaType" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Currencies">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="symbol" Type="Edm.String" MaxLength="5"/>
+        <Property Name="minorUnit" Type="Edm.Int16"/>
+        <NavigationProperty Name="texts" Type="Collection(PoetrySlamService.Currencies_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="PoetrySlamService.Currencies_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Language">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(PoetrySlamService.Language_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="PoetrySlamService.Language_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="ByDProjects">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.String" MaxLength="70" Nullable="false"/>
+        <Property Name="projectID" Type="Edm.String" MaxLength="24"/>
+        <Property Name="typeCodeText" Type="Edm.String"/>
+        <Property Name="statusCodeText" Type="Edm.String"/>
+        <Property Name="costCenter" Type="Edm.String" MaxLength="20"/>
+        <Property Name="startDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="endDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+      </EntityType>
+      <EntityType Name="S4HCProjects">
+        <Key>
+          <PropertyRef Name="projectUUID"/>
+        </Key>
+        <Property Name="projectUUID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="project" Type="Edm.String" MaxLength="24"/>
+        <Property Name="projectDescription" Type="Edm.String" MaxLength="60"/>
+        <Property Name="responsibleCostCenter" Type="Edm.String" MaxLength="10"/>
+        <Property Name="projectStartDate" Type="Edm.Date"/>
+        <Property Name="projectEndDate" Type="Edm.Date"/>
+        <Property Name="projectProfileCode" Type="Edm.String" MaxLength="7"/>
+        <Property Name="processingStatus" Type="Edm.String" MaxLength="2"/>
+      </EntityType>
+      <EntityType Name="B1PurchaseOrder" OpenType="true">
+        <Key>
+          <PropertyRef Name="docEntry"/>
+        </Key>
+        <Property Name="docEntry" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="docNum" Type="Edm.Int32"/>
+        <Property Name="docDueDate" Type="Edm.DateTimeOffset" Precision="0"/>
+        <Property Name="creationDate" Type="Edm.DateTimeOffset" Precision="0"/>
+        <Property Name="docTotal" Type="Edm.Double"/>
+        <Property Name="docCurrency" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="PoetrySlamStatusCodes">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="1"/>
+        <NavigationProperty Name="texts" Type="Collection(PoetrySlamService.PoetrySlamStatusCodes_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="PoetrySlamService.PoetrySlamStatusCodes_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="VisitStatusCodes">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(PoetrySlamService.VisitStatusCodes_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="PoetrySlamService.VisitStatusCodes_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="x_Caterers">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="contactPerson" Type="Edm.String" MaxLength="255"/>
+        <Property Name="phone" Type="Edm.String" MaxLength="30"/>
+        <Property Name="email" Type="Edm.String"/>
+        <NavigationProperty Name="cuisine" Type="PoetrySlamService.x_CuisineTypeCodes">
+          <ReferentialConstraint Property="cuisine_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="cuisine_code" Type="Edm.String" MaxLength="25" DefaultValue="1"/>
+        <Property Name="maxServiceCapacity" Type="Edm.Int32"/>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="PoetrySlamService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="PoetrySlamService.x_Caterers"/>
+      </EntityType>
+      <EntityType Name="x_CuisineTypeCodes">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.String" MaxLength="25" Nullable="false" DefaultValue="1"/>
+        <NavigationProperty Name="texts" Type="Collection(PoetrySlamService.x_CuisineTypeCodes_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="PoetrySlamService.x_CuisineTypeCodes_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="DraftAdministrativeData">
+        <Key>
+          <PropertyRef Name="DraftUUID"/>
+        </Key>
+        <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+        <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+        <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+        <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+        <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+      </EntityType>
+      <EntityType Name="Currencies_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="Language_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.String" MaxLength="14" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="PoetrySlamStatusCodes_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="1"/>
+      </EntityType>
+      <EntityType Name="VisitStatusCodes_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="x_CuisineTypeCodes_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.String" MaxLength="25" Nullable="false" DefaultValue="1"/>
+      </EntityType>
+      <ComplexType Name="userRoles">
+        <Property Name="identified" Type="Edm.Boolean"/>
+        <Property Name="authenticated" Type="Edm.Boolean"/>
+      </ComplexType>
+      <ComplexType Name="user">
+        <Property Name="id" Type="Edm.String"/>
+        <Property Name="locale" Type="Edm.String"/>
+        <Property Name="roles" Type="PoetrySlamService.userRoles"/>
+      </ComplexType>
+      <Action Name="cancel" IsBound="true" EntitySetPath="poetryslam">
+        <Parameter Name="poetryslam" Type="PoetrySlamService.PoetrySlams"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="publish" IsBound="true" EntitySetPath="poetryslam">
+        <Parameter Name="poetryslam" Type="PoetrySlamService.PoetrySlams"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="createByDProject" IsBound="true" EntitySetPath="_poetryslam">
+        <Parameter Name="_poetryslam" Type="PoetrySlamService.PoetrySlams"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="createS4HCProject" IsBound="true" EntitySetPath="_poetryslam">
+        <Parameter Name="_poetryslam" Type="PoetrySlamService.PoetrySlams"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="createB1PurchaseOrder" IsBound="true" EntitySetPath="_poetryslam">
+        <Parameter Name="_poetryslam" Type="PoetrySlamService.PoetrySlams"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="printGuestList" IsBound="true">
+        <Parameter Name="in" Type="PoetrySlamService.PoetrySlams"/>
+        <Parameter Name="printQueue" Type="Edm.String"/>
+      </Action>
+      <Action Name="createWithAI" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="Collection(PoetrySlamService.PoetrySlams)"/>
+        <Parameter Name="language" Type="Edm.String"/>
+        <Parameter Name="tags" Type="Edm.String"/>
+        <Parameter Name="rhyme" Type="Edm.Boolean"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="clearProjectData" IsBound="true">
+        <Parameter Name="_poetryslam" Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="clearPurchaseOrderData" IsBound="true">
+        <Parameter Name="_poetryslam" Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="PoetrySlamService.PoetrySlams"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="PoetrySlamService.Visits"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="PoetrySlamService.Visits"/>
+      </Action>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="PoetrySlamService.x_Caterers"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="PoetrySlamService.x_Caterers"/>
+      </Action>
+      <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="PoetrySlamService.PoetrySlams"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="PoetrySlamService.x_Caterers"/>
+        <ReturnType Type="PoetrySlamService.x_Caterers"/>
+      </Action>
+      <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="PoetrySlamService.PoetrySlams"/>
+        <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="PoetrySlamService.x_Caterers"/>
+        <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+        <ReturnType Type="PoetrySlamService.x_Caterers"/>
+      </Action>
+      <Action Name="cancelVisit" IsBound="true" EntitySetPath="visits">
+        <Parameter Name="visits" Type="PoetrySlamService.Visits"/>
+        <ReturnType Type="PoetrySlamService.Visits"/>
+      </Action>
+      <Action Name="confirmVisit" IsBound="true" EntitySetPath="visits">
+        <Parameter Name="visits" Type="PoetrySlamService.Visits"/>
+        <ReturnType Type="PoetrySlamService.Visits"/>
+      </Action>
+      <Action Name="sendEMail" IsBound="true">
+        <Parameter Name="in" Type="PoetrySlamService.Visits"/>
+      </Action>
+      <Function Name="userInfo" IsBound="false" IsComposable="false">
+        <ReturnType Type="PoetrySlamService.user"/>
+      </Function>
+      <Action Name="createTestData" IsBound="false">
+        <ReturnType Type="Edm.Boolean"/>
+      </Action>
+      <Annotations Target="PoetrySlamService.PoetrySlams">
+        <Annotation Term="Common.SemanticObject" String="poetryslams"/>
+        <Annotation Term="Common.SemanticKey">
+          <Collection>
+            <PropertyPath>number</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.SideEffects" Qualifier="maxVisitorsNumber">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="SourceProperties">
+              <Collection>
+                <PropertyPath>maxVisitorsNumber</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>freeVisitorSeats</String>
+                <String>status_code</String>
+                <String>statusCriticality</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.SideEffects" Qualifier="visits">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="SourceEntities">
+              <Collection>
+                <NavigationPropertyPath>visits</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>freeVisitorSeats</String>
+                <String>status_code</String>
+                <String>statusCriticality</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.DataPoint" Qualifier="bookedSeats">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Title" String="Capacity"/>
+            <PropertyValue Property="Value" Path="bookedSeats"/>
+            <PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/Progress"/>
+            <PropertyValue Property="TargetValue" Path="maxVisitorsNumber"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.DataPoint" Qualifier="dateTime">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="dateTime"/>
+            <PropertyValue Property="Title" String="Event Date"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.DataPoint" Qualifier="status_code">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="status_code"/>
+            <PropertyValue Property="Title" String="Status"/>
+            <PropertyValue Property="Criticality" Path="statusCriticality"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.DataPoint" Qualifier="visitorsFeeAmount">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="visitorsFeeAmount"/>
+            <PropertyValue Property="Title" String="Price"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Facets">
+          <Collection>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="GeneralData"/>
+              <PropertyValue Property="Label" String="General"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralData"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="CatererData"/>
+              <PropertyValue Property="Label" String="Caterer"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Caterer"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Visitors"/>
+              <PropertyValue Property="ID" String="VisitorData"/>
+              <PropertyValue Property="Target" AnnotationPath="visits/@UI.LineItem#VisitorData"/>
+              <Annotation Term="UI.Hidden">
+                <Eq>
+                  <Path>status/code</Path>
+                  <Int>1</Int>
+                </Eq>
+              </Annotation>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Project Data"/>
+              <PropertyValue Property="ID" String="ProjectData"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ProjectData"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <Or>
+                    <Path>isByD</Path>
+                    <Path>isS4HC</Path>
+                  </Or>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Purchase Order Data"/>
+              <PropertyValue Property="ID" String="PurchaseOrderData"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#PurchaseOrderData"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <Path>isB1</Path>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Administrative Data"/>
+              <PropertyValue Property="ID" String="AdministrativeData"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#AdministrativeData"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="CreatedByAndOn">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdAt"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="AdministrativeData">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdAt"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="modifiedBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="modifiedAt"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="GeneralData">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="number"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="status/code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="title"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="description"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="dateTime"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="visitorsFeeAmount"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="visitorsFeeCurrency_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="maxVisitorsNumber"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="freeVisitorSeats"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="ProjectData">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataFieldWithUrl">
+                  <PropertyValue Property="Value" Path="projectID"/>
+                  <PropertyValue Property="Url" Path="projectURL"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="projectSystemName"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="projectSystem"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Project Type"/>
+                  <PropertyValue Property="Value" Path="toByDProject/typeCodeText"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isByD</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Project Status"/>
+                  <PropertyValue Property="Value" Path="toByDProject/statusCodeText"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isByD</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Cost Center"/>
+                  <PropertyValue Property="Value" Path="toByDProject/costCenter"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isByD</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Start Date"/>
+                  <PropertyValue Property="Value" Path="toByDProject/startDateTime"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isByD</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="End Date"/>
+                  <PropertyValue Property="Value" Path="toByDProject/endDateTime"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isByD</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Project Description"/>
+                  <PropertyValue Property="Value" Path="toS4HCProject/projectDescription"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isS4HC</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Project Profile"/>
+                  <PropertyValue Property="Value" Path="projectProfileCodeText"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isS4HC</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Responsible Cost Center"/>
+                  <PropertyValue Property="Value" Path="toS4HCProject/responsibleCostCenter"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isS4HC</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Processing Status"/>
+                  <PropertyValue Property="Value" Path="processingStatusText"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isS4HC</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Start Date"/>
+                  <PropertyValue Property="Value" Path="toS4HCProject/projectStartDate"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isS4HC</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="End Date"/>
+                  <PropertyValue Property="Value" Path="toS4HCProject/projectEndDate"/>
+                  <Annotation Term="UI.Hidden">
+                    <Not>
+                      <Path>isS4HC</Path>
+                    </Not>
+                  </Annotation>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="PurchaseOrderData">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataFieldWithUrl">
+                  <PropertyValue Property="Label" String="Purchase Order"/>
+                  <PropertyValue Property="Value" Path="purchaseOrderID"/>
+                  <PropertyValue Property="Url" Path="purchaseOrderURL"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="System Name"/>
+                  <PropertyValue Property="Value" Path="purchaseOrderSystem"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Delivery Date"/>
+                  <PropertyValue Property="Value" Path="toB1PurchaseOrder/docDueDate"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Creation Date"/>
+                  <PropertyValue Property="Value" Path="toB1PurchaseOrder/creationDate"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Value"/>
+                  <PropertyValue Property="Value" Path="toB1PurchaseOrder/docTotal"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Currency"/>
+                  <PropertyValue Property="Value" Path="toB1PurchaseOrder/docCurrency"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.HeaderFacets">
+          <Collection>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="dateTime"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#dateTime"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="bookedSeats"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#bookedSeats"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="visitorsFeeAmount"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#visitorsFeeAmount"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="status_code"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#status_code"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="CreatedByAndOn"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#CreatedByAndOn"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.HeaderInfo">
+          <Record Type="UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Poetry Slam"/>
+            <PropertyValue Property="TypeNamePlural" String="Poetry Slams"/>
+            <PropertyValue Property="Title">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="number"/>
+              </Record>
+            </PropertyValue>
+            <PropertyValue Property="Description">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="description"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.publish"/>
+              <PropertyValue Property="Label" String="Publish"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <Path>IsActiveEntity</Path>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.cancel"/>
+              <PropertyValue Property="Label" String="Cancel"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <Path>IsActiveEntity</Path>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Label" String="Create Project in SAP Business ByDesign"/>
+              <PropertyValue Property="Action" String="PoetrySlamService.createByDProject"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <And>
+                    <Path>createByDProjectEnabled</Path>
+                    <Path>IsActiveEntity</Path>
+                  </And>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Label" String="Create Project in SAP S/4HANA Cloud"/>
+              <PropertyValue Property="Action" String="PoetrySlamService.createS4HCProject"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <And>
+                    <Path>createS4HCProjectEnabled</Path>
+                    <Path>IsActiveEntity</Path>
+                  </And>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Label" String="Create Purchase Order in SAP Business One"/>
+              <PropertyValue Property="Action" String="PoetrySlamService.createB1PurchaseOrder"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <And>
+                    <Path>createB1PurchaseOrderEnabled</Path>
+                    <Path>IsActiveEntity</Path>
+                  </And>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.printGuestList"/>
+              <PropertyValue Property="Label" String="Print Guest List"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <Path>IsActiveEntity</Path>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Label" String="Clear Project Data"/>
+              <PropertyValue Property="Action" String="PoetrySlamService.clearProjectData"/>
+              <Annotation Term="UI.Hidden">
+                <Or>
+                  <Eq>
+                    <Path>projectID</Path>
+                    <Null/>
+                  </Eq>
+                  <Not>
+                    <Path>IsActiveEntity</Path>
+                  </Not>
+                </Or>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Label" String="Clear Purchase Order Data"/>
+              <PropertyValue Property="Action" String="PoetrySlamService.clearPurchaseOrderData"/>
+              <Annotation Term="UI.Hidden">
+                <Or>
+                  <Eq>
+                    <Path>purchaseOrderID</Path>
+                    <Null/>
+                  </Eq>
+                  <Not>
+                    <Path>IsActiveEntity</Path>
+                  </Not>
+                </Or>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForIntentBasedNavigation">
+              <PropertyValue Property="SemanticObject" String="visitors"/>
+              <PropertyValue Property="Action" String="display"/>
+              <PropertyValue Property="Label" String="Maintain Visitors"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.cancel"/>
+              <PropertyValue Property="Label" String="Cancel"/>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.publish"/>
+              <PropertyValue Property="Label" String="Publish"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="number"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="title"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="description"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="status_code"/>
+              <PropertyValue Property="Criticality" Path="statusCriticality"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="dateTime"/>
+            </Record>
+            <Record Type="UI.DataFieldForAnnotation">
+              <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#bookedSeats"/>
+            </Record>
+            <Record Type="UI.DataFieldWithUrl">
+              <PropertyValue Property="Value" Path="projectID"/>
+              <PropertyValue Property="Url" Path="projectURL"/>
+            </Record>
+            <Record Type="UI.DataFieldWithUrl">
+              <PropertyValue Property="Value" Path="purchaseOrderID"/>
+              <PropertyValue Property="Url" Path="purchaseOrderURL"/>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.createWithAI"/>
+              <PropertyValue Property="Label" String="Create with Slamtastic AI"/>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.EntityContainer/createTestData"/>
+              <PropertyValue Property="Label" String="Generate Sample Data"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>number</PropertyPath>
+            <PropertyPath>title</PropertyPath>
+            <PropertyPath>description</PropertyPath>
+            <PropertyPath>status_code</PropertyPath>
+            <PropertyPath>dateTime</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="Caterer">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="x_caterer_ID"/>
+                  <PropertyValue Property="Label" String="Name"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="x_caterer/cuisine/name"/>
+                  <PropertyValue Property="Label" String="Cuisine"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                  <Annotation Term="UI.Hidden">
+                    <If>
+                      <Ne>
+                        <Path>x_caterer_ID</Path>
+                        <Null/>
+                      </Ne>
+                      <Bool>false</Bool>
+                      <Bool>true</Bool>
+                    </If>
+                  </Annotation>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="x_caterer/contactPerson"/>
+                  <PropertyValue Property="Label" String="Contact Person"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                  <Annotation Term="UI.Hidden">
+                    <If>
+                      <Ne>
+                        <Path>x_caterer_ID</Path>
+                        <Null/>
+                      </Ne>
+                      <Bool>false</Bool>
+                      <Bool>true</Bool>
+                    </If>
+                  </Annotation>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="x_caterer/phone"/>
+                  <PropertyValue Property="Label" String="Phone"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                  <Annotation Term="UI.Hidden">
+                    <If>
+                      <Ne>
+                        <Path>x_caterer_ID</Path>
+                        <Null/>
+                      </Ne>
+                      <Bool>false</Bool>
+                      <Bool>true</Bool>
+                    </If>
+                  </Annotation>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="x_caterer/email"/>
+                  <PropertyValue Property="Label" String="Email"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                  <Annotation Term="UI.Hidden">
+                    <If>
+                      <Ne>
+                        <Path>x_caterer_ID</Path>
+                        <Null/>
+                      </Ne>
+                      <Bool>false</Bool>
+                      <Bool>true</Bool>
+                    </If>
+                  </Annotation>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.EntityContainer/PoetrySlams">
+        <Annotation Term="Common.SemanticObject" String="poetryslams"/>
+        <Annotation Term="Common.SideEffects" Qualifier="maxVisitorsNumber">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="SourceProperties">
+              <Collection>
+                <PropertyPath>maxVisitorsNumber</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>freeVisitorSeats</String>
+                <String>status_code</String>
+                <String>statusCriticality</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.SideEffects" Qualifier="visits">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="SourceEntities">
+              <Collection>
+                <NavigationPropertyPath>visits</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>freeVisitorSeats</String>
+                <String>status_code</String>
+                <String>statusCriticality</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.DraftRoot">
+          <Record Type="Common.DraftRootType">
+            <PropertyValue Property="ActivationAction" String="PoetrySlamService.draftActivate"/>
+            <PropertyValue Property="EditAction" String="PoetrySlamService.draftEdit"/>
+            <PropertyValue Property="PreparationAction" String="PoetrySlamService.draftPrepare"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="PersonalData.DataSubjectRole" String="PoetrySlams"/>
+        <Annotation Term="PersonalData.EntitySemantics" String="DataSubject"/>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable">
+              <Or>
+                <Eq>
+                  <Path>status/code</Path>
+                  <Int>1</Int>
+                </Eq>
+                <Eq>
+                  <Path>status/code</Path>
+                  <Int>4</Int>
+                </Eq>
+              </Or>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/ID">
+        <Annotation Term="PersonalData.FieldSemantics" String="DataSubjectID"/>
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+        <Annotation Term="Common.Label" String="UUID"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/createdBy">
+        <Annotation Term="PersonalData.IsPotentiallyPersonal" Bool="true"/>
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/modifiedBy">
+        <Annotation Term="PersonalData.IsPotentiallyPersonal" Bool="true"/>
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/number">
+        <Annotation Term="Common.Label" String="Number"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/title">
+        <Annotation Term="Common.Label" String="Title"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/description">
+        <Annotation Term="UI.MultiLineText" Bool="true"/>
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/dateTime">
+        <Annotation Term="Common.Label" String="Event Date"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/maxVisitorsNumber">
+        <Annotation Term="Common.Label" String="Max Number of Visitors"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/freeVisitorSeats">
+        <Annotation Term="Common.Label" String="Available Seats"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/visitorsFeeAmount">
+        <Annotation Term="Measures.ISOCurrency" Path="visitorsFeeCurrency_code"/>
+        <Annotation Term="Common.Label" String="Price"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/visitorsFeeCurrency">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Currency"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/visitorsFeeCurrency_code">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Currency"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Currency"/>
+            <PropertyValue Property="CollectionPath" String="Currencies"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="visitorsFeeCurrency_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/status">
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/status_code">
+        <Annotation Term="Common.Text" Path="status/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Status"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Status"/>
+            <PropertyValue Property="CollectionPath" String="PoetrySlamStatusCodes"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="status_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/visits">
+        <Annotation Term="Common.Label" String="Booking"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/projectID">
+        <Annotation Term="Common.Label" String="Project"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/projectObjectID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Project UUID"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/projectURL">
+        <Annotation Term="Common.Label" String="Project URL"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/projectSystem">
+        <Annotation Term="Common.Label" String="System Type"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/purchaseOrderID">
+        <Annotation Term="Common.Label" String="Purchase Order"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/purchaseOrderObjectID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Purchase Order Internal ID"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/purchaseOrderURL">
+        <Annotation Term="Common.Label" String="Purchase Order URL"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/purchaseOrderSystem">
+        <Annotation Term="Common.Label" String="Purchase Order System Type"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/x_caterer">
+        <Annotation Term="Common.Label" String="Caterer"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/x_caterer_ID">
+        <Annotation Term="Common.Text" Path="x_caterer/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="false"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Caterer"/>
+            <PropertyValue Property="CollectionPath" String="x_Caterers"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="ValueListProperty" String="ID"/>
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="x_caterer_ID"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="cuisine_code"/>
+                  <Annotation Term="title" String="Cuisine"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="contactPerson"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Caterer"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/bookedSeats">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Booked Seats"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/statusCriticality">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="statusCriticality"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/projectSystemName">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="System Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/createByDProjectEnabled">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/isByD">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/createS4HCProjectEnabled">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/projectProfileCodeText">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Project Profile"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/processingStatusText">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Processing Status"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/isS4HC">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/createB1PurchaseOrderEnabled">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/purchaseOrderSystemName">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="System Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/isB1">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/DraftAdministrativeData">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.cancel(PoetrySlamService.PoetrySlams)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>poetryslam/status_code</String>
+                <String>poetryslam/statusCriticality</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.publish(PoetrySlamService.PoetrySlams)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>poetryslam/status_code</String>
+                <String>poetryslam/statusCriticality</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.createByDProject(PoetrySlamService.PoetrySlams)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetEntities">
+              <Collection>
+                <NavigationPropertyPath>_poetryslam</NavigationPropertyPath>
+                <NavigationPropertyPath>_poetryslam/toByDProject</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.createS4HCProject(PoetrySlamService.PoetrySlams)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetEntities">
+              <Collection>
+                <NavigationPropertyPath>_poetryslam</NavigationPropertyPath>
+                <NavigationPropertyPath>_poetryslam/toS4HCProject</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.createB1PurchaseOrder(PoetrySlamService.PoetrySlams)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetEntities">
+              <Collection>
+                <NavigationPropertyPath>_poetryslam</NavigationPropertyPath>
+                <NavigationPropertyPath>_poetryslam/toB1PurchaseOrder</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.printGuestList(PoetrySlamService.PoetrySlams)/printQueue">
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="PrintQueues"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="printQueue"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="descr"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Select Print Queue"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.createWithAI(Collection(PoetrySlamService.PoetrySlams))/language">
+        <Annotation Term="UI.ParameterDefaultValue" String="EN"/>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="false"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="Language"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="language"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="descr"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Select the language in which you want the title and description to be generated"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.createWithAI(Collection(PoetrySlamService.PoetrySlams))/tags">
+        <Annotation Term="UI.Placeholder" String="For example: creative, funny"/>
+        <Annotation Term="Common.Label" String="Add some tags to describe the generated title and description"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.createWithAI(Collection(PoetrySlamService.PoetrySlams))/rhyme">
+        <Annotation Term="UI.ParameterDefaultValue" Bool="true"/>
+        <Annotation Term="Common.Label" String="Generate the description in rhymes"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.clearProjectData(PoetrySlamService.PoetrySlams)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetEntities">
+              <Collection>
+                <NavigationPropertyPath>_poetryslam</NavigationPropertyPath>
+                <NavigationPropertyPath>_poetryslam/toS4HCProject</NavigationPropertyPath>
+                <NavigationPropertyPath>_poetryslam/toByDProject</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.clearPurchaseOrderData(PoetrySlamService.PoetrySlams)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetEntities">
+              <Collection>
+                <NavigationPropertyPath>_poetryslam</NavigationPropertyPath>
+                <NavigationPropertyPath>_poetryslam/toB1PurchaseOrder</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.EntityContainer/PrintQueues">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors">
+        <Annotation Term="Common.SemanticObject" String="visitors"/>
+        <Annotation Term="Common.SemanticKey">
+          <Collection>
+            <PropertyPath>ID</PropertyPath>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.EntityContainer/Visitors">
+        <Annotation Term="Common.SemanticObject" String="visitors"/>
+        <Annotation Term="PersonalData.DataSubjectRole" String="Visitors"/>
+        <Annotation Term="PersonalData.EntitySemantics" String="DataSubject"/>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors/ID">
+        <Annotation Term="Common.Label" String="Email"/>
+        <Annotation Term="Common.Text" Path="email">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="PersonalData.FieldSemantics" String="DataSubjectID"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors/name">
+        <Annotation Term="Common.Label" String="Name"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors/email">
+        <Annotation Term="PersonalData.IsPotentiallySensitive" Bool="true"/>
+        <Annotation Term="Communication.IsEmailAddress" Bool="true"/>
+        <Annotation Term="Common.Label" String="Email"/>
+        <Annotation Term="Validation.Pattern" String="^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visitors/visits">
+        <Annotation Term="Common.Label" String="Booking"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits">
+        <Annotation Term="Common.SemanticObject" String="visits"/>
+        <Annotation Term="Common.SemanticKey">
+          <Collection>
+            <PropertyPath>ID</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.SideEffects" Qualifier="VisitorData">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="SourceProperties">
+              <Collection>
+                <PropertyPath>visitor_ID</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>status_code</String>
+                <String>statusCriticality</String>
+                <String>parent/status_code</String>
+                <String>parent/statusCriticality</String>
+                <String>parent/freeVisitorSeats</String>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="TargetEntities">
+              <Collection>
+                <NavigationPropertyPath>visitor</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.UpdateHidden" Bool="true"/>
+        <Annotation Term="UI.HeaderInfo">
+          <Record Type="UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Booking"/>
+            <PropertyValue Property="TypeNamePlural" String="Bookings"/>
+            <PropertyValue Property="Title">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="parent/title"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataFieldForIntentBasedNavigation">
+              <PropertyValue Property="SemanticObject" String="visitors"/>
+              <PropertyValue Property="Action" String="display"/>
+              <PropertyValue Property="Label" String="Maintain Visitor"/>
+              <PropertyValue Property="Mapping">
+                <Collection>
+                  <Record Type="Common.SemanticObjectMappingType">
+                    <PropertyValue Property="LocalProperty" PropertyPath="visitor/ID"/>
+                    <PropertyValue Property="SemanticObjectProperty" String="ID"/>
+                  </Record>
+                </Collection>
+              </PropertyValue>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.LineItem" Qualifier="VisitorData">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="visitor_ID"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="visitor/email"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="artistIndicator"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="status_code"/>
+              <PropertyValue Property="Criticality" Path="statusCriticality"/>
+              <PropertyValue Property="Label" String="Status"/>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.cancelVisit"/>
+              <PropertyValue Property="Label" String="Cancel"/>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.confirmVisit"/>
+              <PropertyValue Property="Label" String="Book"/>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.sendEMail"/>
+              <PropertyValue Property="Label" String="Send Confirmation Email"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.Facets">
+          <Collection>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Visitor"/>
+              <PropertyValue Property="ID" String="Visitor"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#VisitorData"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Administrative Data"/>
+              <PropertyValue Property="ID" String="AdministrativeData"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#AdministrativeData"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="AdministrativeData">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdAt"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="modifiedBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="modifiedAt"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="VisitorData">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="visitor/name"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="visitor/email"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="artistIndicator"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="status/code"/>
+                  <PropertyValue Property="Criticality" Path="statusCriticality"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.EntityContainer/Visits">
+        <Annotation Term="Common.SemanticObject" String="visits"/>
+        <Annotation Term="Common.SideEffects" Qualifier="VisitorData">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="SourceProperties">
+              <Collection>
+                <PropertyPath>visitor_ID</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>status_code</String>
+                <String>statusCriticality</String>
+                <String>parent/status_code</String>
+                <String>parent/statusCriticality</String>
+                <String>parent/freeVisitorSeats</String>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="TargetEntities">
+              <Collection>
+                <NavigationPropertyPath>visitor</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.DraftNode">
+          <Record Type="Common.DraftNodeType">
+            <PropertyValue Property="PreparationAction" String="PoetrySlamService.draftPrepare"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="PersonalData.DataSubjectRole" String="Visits"/>
+        <Annotation Term="PersonalData.EntitySemantics" String="DataSubjectDetails"/>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable">
+              <Eq>
+                <Path>parent/status_code</Path>
+                <Int>2</Int>
+              </Eq>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.UpdateHidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/ID">
+        <Annotation Term="PersonalData.FieldSemantics" String="DataSubjectID"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+        <Annotation Term="Common.Label" String="UUID"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/createdBy">
+        <Annotation Term="PersonalData.IsPotentiallyPersonal" Bool="true"/>
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/modifiedBy">
+        <Annotation Term="PersonalData.IsPotentiallyPersonal" Bool="true"/>
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/parent">
+        <Annotation Term="Common.Label" String="Poetry Slam UUID"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/parent_ID">
+        <Annotation Term="PersonalData.FieldSemantics" String="DataSubjectID"/>
+        <Annotation Term="Common.Label" String="Poetry Slam UUID"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/visitor">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/visitor_ID">
+        <Annotation Term="Common.Label" String="Name"/>
+        <Annotation Term="Common.Text" Path="visitor/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="Visitors"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="visitor_ID"/>
+                  <PropertyValue Property="ValueListProperty" String="ID"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="email"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+        <Annotation Term="PersonalData.FieldSemantics" String="DataSubjectID"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/artistIndicator">
+        <Annotation Term="Common.Label" String="Artist"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/status">
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/status_code">
+        <Annotation Term="Common.Text" Path="status/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Status"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Status"/>
+            <PropertyValue Property="CollectionPath" String="VisitStatusCodes"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="status_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/statusCriticality">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="statusCriticality"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Visits/DraftAdministrativeData">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.cancelVisit(PoetrySlamService.Visits)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>visits/statusCriticality</String>
+                <String>visits/status_code</String>
+                <String>visits/parent/status_code</String>
+                <String>visits/parent/statusCriticality</String>
+                <String>visits/parent/freeVisitorSeats</String>
+                <String>visits/parent/bookedSeats</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.confirmVisit(PoetrySlamService.Visits)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>visits/statusCriticality</String>
+                <String>visits/status_code</String>
+                <String>visits/parent/status_code</String>
+                <String>visits/parent/statusCriticality</String>
+                <String>visits/parent/freeVisitorSeats</String>
+                <String>visits/parent/bookedSeats</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.EntityContainer/PDFDocument">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PDFDocument/ID">
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PDFDocument/content">
+        <Annotation Term="Core.MediaType" Path="mediaType"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PDFDocument/mediaType">
+        <Annotation Term="Core.IsMediaType" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies/code">
+        <Annotation Term="Common.Text" Path="name"/>
+        <Annotation Term="Common.Label" String="Currency Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies/symbol">
+        <Annotation Term="Common.Label" String="Currency Symbol"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies/minorUnit">
+        <Annotation Term="Common.Label" String="Currency Minor Unit Fractions"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Language">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Language/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Language/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Language/code">
+        <Annotation Term="Common.Text" Path="name"/>
+        <Annotation Term="Common.Label" String="Language Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.createTestData()">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetEntities">
+              <Collection>
+                <NavigationPropertyPath>/PoetrySlamService.EntityContainer/PoetrySlams</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.S4HCProjects/projectUUID">
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.VisitStatusCodes">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.VisitStatusCodes/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.VisitStatusCodes/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.VisitStatusCodes/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.EntityContainer/x_Caterers">
+        <Annotation Term="Common.DraftRoot">
+          <Record Type="Common.DraftRootType">
+            <PropertyValue Property="ActivationAction" String="PoetrySlamService.draftActivate"/>
+            <PropertyValue Property="EditAction" String="PoetrySlamService.draftEdit"/>
+            <PropertyValue Property="PreparationAction" String="PoetrySlamService.draftPrepare"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/ID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/name">
+        <Annotation Term="Common.Label" String="Name"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/contactPerson">
+        <Annotation Term="Common.Label" String="Contact Person"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/phone">
+        <Annotation Term="Common.Label" String="Phone"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/email">
+        <Annotation Term="Common.Label" String="Email"/>
+        <Annotation Term="Validation.Pattern" String="^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/cuisine">
+        <Annotation Term="Common.Label" String="Cuisine"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/cuisine_code">
+        <Annotation Term="Common.Label" String="Cuisine"/>
+        <Annotation Term="Common.Text" Path="cuisine/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Cuisine"/>
+            <PropertyValue Property="CollectionPath" String="x_CuisineTypeCodes"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="cuisine_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/maxServiceCapacity">
+        <Annotation Term="Common.Label" String="Maximum Service Capacity"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_Caterers/DraftAdministrativeData">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_CuisineTypeCodes">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_CuisineTypeCodes/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_CuisineTypeCodes/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_CuisineTypeCodes/code">
+        <Annotation Term="Common.Label" String="Cuisine Type"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData">
+        <Annotation Term="Common.Label" String="Draft Administrative Data"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData/DraftUUID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Draft (Technical ID)"/>
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData/CreationDateTime">
+        <Annotation Term="Common.Label" String="Draft Created On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData/CreatedByUser">
+        <Annotation Term="Common.Label" String="Draft Created By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData/DraftIsCreatedByMe">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Draft Created By Me"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData/LastChangeDateTime">
+        <Annotation Term="Common.Label" String="Draft Last Changed On"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData/LastChangedByUser">
+        <Annotation Term="Common.Label" String="Draft Last Changed By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData/InProcessByUser">
+        <Annotation Term="Common.Label" String="Draft In Process By"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.DraftAdministrativeData/DraftIsProcessedByMe">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Draft In Process By Me"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies_texts/locale">
+        <Annotation Term="Common.Label" String="Language Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Currencies_texts/code">
+        <Annotation Term="Common.Text" Path="name"/>
+        <Annotation Term="Common.Label" String="Currency Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Language_texts/locale">
+        <Annotation Term="Common.Label" String="Language Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Language_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Language_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.Language_texts/code">
+        <Annotation Term="Common.Text" Path="name"/>
+        <Annotation Term="Common.Label" String="Language Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes_texts/locale">
+        <Annotation Term="Common.Label" String="Language Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes_texts/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.VisitStatusCodes_texts/locale">
+        <Annotation Term="Common.Label" String="Language Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.VisitStatusCodes_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.VisitStatusCodes_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.VisitStatusCodes_texts/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_CuisineTypeCodes_texts/locale">
+        <Annotation Term="Common.Label" String="Language Code"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_CuisineTypeCodes_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_CuisineTypeCodes_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.x_CuisineTypeCodes_texts/code">
+        <Annotation Term="Common.Label" String="Cuisine Type"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

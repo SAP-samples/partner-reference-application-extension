@@ -12,7 +12,7 @@ For bill of materials, refer to the [Partner Reference Application Tutorial - Le
 
 ## Subaccounts
 
-The example setup serves below customer called *Gourmet Pages*, a renowned food magazine that uniquely combines poetry slam events with gourmet food experiences.
+The example setup serves below customer called *Gourmet Poetry*, a renowned food magazine that uniquely combines poetry slam events with gourmet food experiences.
 
 To develop and run the application, the following directory and subaccount structure is proposed.
 
@@ -22,7 +22,7 @@ To develop and run the application, the following directory and subaccount struc
 |                                  | Development                          | SAP Business Application Studio                                                                                 |
 | Partner Reference Application    |                                      |                                                                                                             |
 |                                  | Provider: Poetry Slam Manager        | Application runtime, the database, other SAP BTP services used to run the application                       |
-|                                  | Consumer : Gourmet Pages      | Subscription to customer Gourmet Pages who uses the application as a stand-alone solution          |
+|                                  | Consumer : Gourmet Poetry      | Subscription to customer Gourmet Poetry who uses the application as a stand-alone solution          |
 
 > Note: If you have already deployed the PSM, you can retain it and simply add the new consumer or opt for the minimal setup as outlined in the table.
 
@@ -41,6 +41,8 @@ In addition to the entitlements needed to deploy and run the [Poetry Slam Manage
 |               | SAP HTML5 Application Repository service for SAP BTP | app-runtime               | Service       | 1                                 |
 |               | SAP Build Work Zone, standard edition                | standard                  | Application   | 1                                 |
 
+> Note: The *SAP HANA Schemas & HDI Containers* entitlement is not required in the consumer tenant, as the SAP HANA database instance from the provider tenant will be utilized.
+
 ## Services Without Entitlements
 
 The list shows services that don't require entitlements.
@@ -55,6 +57,6 @@ The list shows services that don't require entitlements.
 
 Before you move on to the next tutorial, ensure that the required service assignments are available in your global account and that you have completed the setup of the extensibility-enabled multi-tenant PSM application.
 
-> Note: Subscribe to the PSM application in the consumer subaccount and assign yourself the `PoetrySlamManagerRoleCollection` and `PoetrySlamVisitorRoleCollection` role collections in the consumer tenant.<br/> For more information, refer to [Partner Reference Application Tutorial - Provision Tenants of the Multi-Tenant Application to Customers](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/25-Multi-Tenancy-Provisioning.md#provision-tenants-of-the-multi-tenant-application-to-customers)
+> Note: Subscribe to the PSM application in the consumer tenant and assign yourself the `PoetrySlamManagerRoleCollection` and `PoetrySlamVisitorRoleCollection` role collections in the consumer tenant.<br/> For more information, refer to [Partner Reference Application Tutorial - Provision Tenants of the Multi-Tenant Application to Customers](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/25-Multi-Tenancy-Provisioning.md#provision-tenants-of-the-multi-tenant-application-to-customers)
 
 Now that you're familiar with the bill of materials and have set up the multi-tenant PSM application, you prepare the data model to extend the PSM application in the consumer tenant in the [next tutorial](./02-DataModelExtensibility.md).
