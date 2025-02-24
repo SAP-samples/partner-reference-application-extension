@@ -39,7 +39,6 @@ Here the event manager has to organize the catering for the event registered in 
 While Gourmet Poetry views catering as an essential component of their events, other customers may not require this functionality. The extension is designed to accommodate both scenarios seamlessly,
 enabling tenant-specific configurations without disrupting the core application's functionality for other users.
 
-
 This story highlights:
 
 - The flexibility of multi-tenant architecture, ensuring optional features like catering can be enabled per tenant.
