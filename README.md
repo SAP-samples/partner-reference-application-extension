@@ -20,8 +20,8 @@ It showcases the platform's flexibility and extensibility with features such as:
 #### Overview of Partner Reference Application
 
 [Partner Reference Application](https://github.com/SAP-samples/partner-reference-application.git) repository provides you with a “golden path” to becoming a SaaS provider of 
-multi-tenant applications based on the SAP Business Technology Platform (SAP BTP). The guidance covers building, running, and integrating scalable full-stack cloud applications. 
-It includes an ERP-agnostic design that lets you deliver your application as a side-by-side extension to consumers using any SAP solution, such as SAP S/4HANA Cloud, SAP Business One, 
+multi-tenant applications based on the SAP Business Technology Platform (SAP BTP). The guidance covers building, running, and integrating scalable full-stack cloud applications.
+It includes an ERP-agnostic design that lets you deliver your application as a side-by-side extension to consumers using any SAP solution, such as SAP S/4HANA Cloud, SAP Business One,
 and SAP Business ByDesign
 
 ### About the Sample Extension _Catering Management_
@@ -38,7 +38,6 @@ Here the event manager has to organize the catering for the event registered in 
 
 While Gourmet Poetry views catering as an essential component of their events, other customers may not require this functionality. The extension is designed to accommodate both scenarios seamlessly,
 enabling tenant-specific configurations without disrupting the core application's functionality for other users.
-
 
 This story highlights:
 
