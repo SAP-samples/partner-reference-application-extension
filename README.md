@@ -1,5 +1,5 @@
 # Partner Reference Application Extension 'Catering Management'
-
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/partner-reference-application-extension)](https://api.reuse.software/info/github.com/SAP-samples/partner-reference-application-extension)
 ## Description
 
 In the dynamic landscape of multi-tenant SaaS applications, extensibility is crucial for success. While standardized cloud software offers efficiency and regular updates, it often can't address every customer's unique needs, industry-specific requirements, or regulatory demands. When one customer requires a specialized feature, it's impractical to modify the core product for all users. Moreover, businesses need the flexibility to integrate with existing systems, innovate on top of standard solutions, and rapidly adapt to changing market conditions—all while maintaining a cost-effective approach that preserves the ability to receive regular software updates. This is where tenant-specific extensions become invaluable.
