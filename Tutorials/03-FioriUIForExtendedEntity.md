@@ -79,7 +79,7 @@ The SAP Fiori Tools - Application Modeler extension includes two tools, which ar
 
 This tutorial will not go into a line-by-line explanation of the files. However, you are encouraged to explore each file in detail to gain a deeper understanding of the sample implementation. The most relevant files are the following:
 
-- [`manifest.json`](../partner-reference-extension-catering-ui/caterer/webapp/manifest.json): Describe the application structure, routing, services, dependencies, and SAP Fiori launchpad integration.
+- [`manifest.json`](../partner-reference-extension-catering-ui/caterer/webapp/manifest.json): Describe the application structure, routing, services, dependencies, and SAP Fiori launchpad integration. The *crossNavigation* section must be defined to enable intent-based navigation, allowing the app to be launched using a specified semantic object and action.
 - [`annotation.xml`](../partner-reference-extension-catering-ui/caterer/webapp/annotations/annotation.xml): Define UI-specific annotations that dictate how data is displayed and behaves in the SAP Fiori application.
 - [`Internationalization(i18n)`](../partner-reference-extension-catering-ui/caterer/webapp/i18n/i18n.properties): Configure to align with specific requirements.
 
@@ -163,3 +163,43 @@ Now that you have completed all the development and configurations, you can proc
 4. To deploy the application, run the command `npm run deploy`.
 
 > Note: Looking for more details? Go to the [CAPire Documentation - Deploy to Cloud Foundry](https://cap.cloud.sap/docs/guides/deployment/to-cf).
+
+## Configure SAP Build Work Zone
+
+You have already created a *Launchpad Site* in *SAP Build Work Zone* for the *Poetry Slam Manager* application. Now you have to add *Caterer* web application.
+
+This is done in the *Site Manager* that is launched when you go to the application *SAP Build Work Zone, standard edition* under *Instances and Subscriptions* in the consumer subaccount.
+
+> Note: For more details on configuring *Poetry Slam Manager* application, refer to [Partner Reference Application Tutorial - Configure SAP Build Work Zone](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/25-Multi-Tenancy-Provisioning.md#configure-sap-build-work-zone)
+
+### Add Web Application to Content Manager
+
+The *Content Manager* is the central place to manage applications, roles, and groups in *SAP Build Work Zone*. Applications must be added to the content repository before they can be assigned to users.
+
+1. In the *Site Manager*, open the *Content Manager*.
+2. Click on *Content Explorer* and choose *HTML5 Apps*.
+3. Choose the *Caterer* web application and click on *Add*.
+
+   > Note: If the application is not visible, go to *Channel Manager* and update the *HTML5 Apps* content channel.
+
+### Assign the Application to a Role
+
+Role assignments define who can access and interact with an application within the launchpad. By assigning the  application to the *Everyone* role (or any specific role based on business needs), you ensure that authorized users can see and use the application.
+
+1. Open the *Content Manager* and choose the *Everyone* role (available by default).
+2. Assign the *Caterer* application to this role and save your changes.
+
+### Create a New Group for the Application
+
+Creating a Group allows you to categorize applications based on functionality, user roles, or business processes. This improves accessibility by ensuring that related applications appear together in a structured manner.
+
+1. Open the *Content Manager*, create a new *Group*.
+2. Enter a *Title* and *Description* for better organization.
+3. Add the *Caterer* application to the newly created group and save your changes.
+
+### Configure Role Assignments in Site Settings
+
+By assigning the *Everyone* role (or a specific business role) in *Site Settings*, you provide authorized users with the necessary permissions to access the launchpad, navigate through available applications, and use the applications seamlessly.
+
+1. Navigate to the *Site Directory* and open *Site Settings*.
+2. Go to *Role Assignments*, assign the *Everyone* role, and save your changes.
