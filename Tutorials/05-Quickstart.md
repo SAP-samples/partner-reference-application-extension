@@ -8,7 +8,7 @@ If you prefer a quick start without further explanation, but with a deployment o
 2. Prepare your consumer subaccount by ensuring that you have the necessary entitlements assigned as per the [Bill of Materials](./01-BillOfMaterials.md).
 3. To extend the base data model, ensure that the required role collection is assigned to your user in the subscriber subaccount.
 Follow the steps here: [Assign Extension Developer Role](02-DataModelExtensibility.md#assigning-the-extension-developer-role)
-4. Clone the branch [`main` of the repository](https://github.com/SAP-samples/partner-reference-application-extension) in SAP Business Application Studio.
+4. Clone the branch [main of the repository](https://github.com/SAP-samples/partner-reference-application-extension) in SAP Business Application Studio.
 5. Open your terminal and navigate to the extension project directory by running:
 
     ```bash
