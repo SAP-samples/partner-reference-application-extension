@@ -2,7 +2,36 @@
   "name": "partner-reference-application",
   "cds": {
     "requires": {
-      "cds.xt.ExtensibilityService": {}
+      "cds.xt.ExtensibilityService": {
+        "element-prefix": [
+          "x_"
+        ],
+        "namespace-blocklist": [],
+        "extension-allowlist": [
+          {
+            "for": [
+              "sap.samples.poetryslams.PoetrySlams",
+              "PoetrySlamService.PoetrySlams"
+            ],
+            "kind": "entity",
+            "annotations": [
+              "@assert.integrity"
+            ]
+          },
+          {
+            "for": [
+              "sap.samples.poetryslams.Visitors"
+            ],
+            "kind": "entity"
+          },
+          {
+            "for": [
+              "PoetrySlamService"
+            ],
+            "kind": "service"
+          }
+        ]
+      }
     }
   }
 }

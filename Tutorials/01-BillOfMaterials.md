@@ -16,13 +16,13 @@ The example setup serves below customer called *Gourmet Poetry*, a renowned food
 
 To develop and run the application, the following directory and subaccount structure is proposed.
 
-| Directory Name                   | Subaccount Name                      | Usage                                                                                                       |
-| --------------------             | --------------------                 | ----------------------------                                                                                |
-| Development                      |                                      |                                                                                                             |
-|                                  | Development                          | SAP Business Application Studio                                                                                 |
-| Partner Reference Application    |                                      |                                                                                                             |
-|                                  | Provider: Poetry Slam Manager        | Application runtime, the database, other SAP BTP services used to run the application                       |
-|                                  | Consumer : Gourmet Poetry      | Subscription to customer Gourmet Poetry who uses the application as a stand-alone solution          |
+| Directory Name                | Subaccount Name               | Usage                                                                                      |
+| ----------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------ |
+| Development                   |                               |                                                                                            |
+|                               | Development                   | SAP Business Application Studio                                                            |
+| Partner Reference Application |                               |                                                                                            |
+|                               | Provider: Poetry Slam Manager | Application runtime, the database, other SAP BTP services used to run the application      |
+|                               | Consumer : Gourmet Poetry     | Subscription to customer Gourmet Poetry who uses the application as a stand-alone solution |
 
 > Note: If you have already deployed the PSM, you can retain it and simply add the new consumer or opt for the minimal setup as outlined in the table.
 
@@ -30,28 +30,31 @@ To develop and run the application, the following directory and subaccount struc
 
 In addition to the entitlements needed to deploy and run the [Poetry Slam Manager](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/20-Multi-Tenancy-BillOfMaterials.md#entitlements), the list also includes the entitlements required in the respective subaccounts for developing and running extensions.
 
-| Subaccount    |  Entitlement Name                                    | Service Plan              | Type          | Quantity                          |
-| -----------   |  -------------------                                 | ---------                 | ---------     | ---------                         |
-| Development   |                                                      |                           |               |                                   |
-|               | SAP Business Application Studio                      | standard-edition          | Application   | 1 (per developer)                 |
-| Consumer      |                                                      |                           |               |                                   |
-|               | SAP Authorization and Trust Management service       | broker                    | Service       | 1                                 |
-|               | SAP Destination service                              | lite                      | Service       | 1                                 |
-|               | SAP HTML5 Application Repository service for SAP BTP | app-host                  | Service       | 1                                 |
-|               | SAP HTML5 Application Repository service for SAP BTP | app-runtime               | Service       | 1                                 |
-|               | SAP Build Work Zone, standard edition                | standard                  | Application   | 1                                 |
+| Subaccount  | Entitlement Name                                     | Service Plan     | Type        | Quantity          |
+| ----------- | ---------------------------------------------------- | ---------------- | ----------- | ----------------- |
+| Development |                                                      |                  |             |                   |
+|             | SAP Business Application Studio                      | standard-edition | Application | 1 (per developer) |
+| Consumer    |                                                      |                  |             |                   |
+|             | SAP BTP Cloud Foundry runtime                        | standard         | Environment | 1 unit            |
+|             | SAP Authorization and Trust Management service       | broker           | Service     | 1                 |
+|             | SAP Destination service                              | lite             | Service     | 1                 |
+|             | SAP HTML5 Application Repository service for SAP BTP | app-host         | Service     | 1                 |
+|             | SAP HTML5 Application Repository service for SAP BTP | app-runtime      | Service     | 1                 |
+|             | SAP Build Work Zone, standard edition                | standard         | Application | 1                 |
 
-> Note: The *SAP HANA Schemas & HDI Containers* entitlement is not required in the consumer tenant, as the SAP HANA database instance from the provider tenant will be utilized.
+> Note:
+>
+> 1. The *SAP HANA Schemas & HDI Containers* entitlement is not required in the consumer tenant, as the SAP HANA database instance from the provider tenant will be utilized.
+> 2. If you already have a SAP Business Application Studio subscription, you can reuse it also for your extension projects.
 
 ## Services Without Entitlements
 
 The list shows services that don't require entitlements.
 
-| Subaccount    |  Entitlement Name                                    | Service Plan              | Type          | Quantity                          |
-| -----------   |  -------------------                                 | ---------                 | ---------     | ---------                         |
-| Consumer      |                                                      |                           |               |                                   |
-|               | Poetry Slam Manager                                  | default                   | Application   | 1 (partner application)           |
-
+| Subaccount | Entitlement Name    | Service Plan | Type        | Quantity                |
+| ---------- | ------------------- | ------------ | ----------- | ----------------------- |
+| Consumer   |                     |              |             |                         |
+|            | Poetry Slam Manager | default      | Application | 1 (partner application) |
 
 > Note: Contact SAP if there aren't enough service entitlements available in your global account.
 

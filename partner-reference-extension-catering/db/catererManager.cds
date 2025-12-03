@@ -16,7 +16,7 @@ entity x_Caterers : cuid,managed {
 
 // x_ is based on the configuration maintained in the base app. https://cap.cloud.sap/docs/guides/multitenancy/mtxs#extensibility-config
 extend PoetrySlams with {
-  x_caterer : Association to one x_Caterers @title: '{i18n>caterer}'
+  x_caterer : Association to one x_Caterers @title: '{i18n>caterer}';
 }
 
 annotate x_Caterers with {
