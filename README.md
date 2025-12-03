@@ -1,5 +1,7 @@
 # Partner Reference Application Extension 'Catering Management'
+
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/partner-reference-application-extension)](https://api.reuse.software/info/github.com/SAP-samples/partner-reference-application-extension)
+
 ## Description
 
 In the dynamic landscape of multi-tenant SaaS applications, extensibility is crucial for success. While standardized cloud software offers efficiency and regular updates, it often can't address every customer's unique needs, industry-specific requirements, or regulatory demands. When one customer requires a specialized feature, it's impractical to modify the core product for all users. Moreover, businesses need the flexibility to integrate with existing systems, innovate on top of standard solutions, and rapidly adapt to changing market conditions—all while maintaining a cost-effective approach that preserves the ability to receive regular software updates. This is where tenant-specific extensions become invaluable.
@@ -20,9 +22,9 @@ It showcases the platform's flexibility and extensibility with features such as:
 #### Overview of Partner Reference Application
 
 [Partner Reference Application](https://github.com/SAP-samples/partner-reference-application.git) repository provides you with a “golden path” to becoming a SaaS provider of 
-multi-tenant applications based on the SAP Business Technology Platform (SAP BTP). The guidance covers building, running, and integrating scalable full-stack cloud applications. 
+multi-tenant applications based on SAP BTP. The guidance covers building, running, and integrating scalable full-stack cloud applications. 
 It includes an ERP-agnostic design that lets you deliver your application as a side-by-side extension to consumers using any SAP solution, such as SAP S/4HANA Cloud, SAP Business One, 
-and SAP Business ByDesign
+and SAP Business ByDesign.
 
 ### About the Sample Extension _Catering Management_
 
@@ -30,14 +32,15 @@ Imagine you are an event manager at Gourmet Poetry, a company renowned for organ
 
 While the base Poetry Slam Manager (PSM) application helps you manage events and attendees, you face additional complexities in selecting, tracking, and coordinating with caterers for your events.
 
-Here the event manager has to organize the catering for the event registered in the "Poetry Slam Manager" app to manage the poetry slams using the extension provided by the partner to manage the catering services.
+Here, the event manager needs to organize catering for events registered in the "Poetry Slam Manager" app and therefore uses the extension provided by the partner to manage catering services.
 
 <p align="center">
     <img src="./Tutorials/images/00_Gourmet_page_persona.png" width="40%">  
 </p>
 
-While Gourmet Poetry views catering as an essential component of their events, other customers may not require this functionality. The extension is designed to accommodate both scenarios seamlessly,
+While Gourmet Poetry sees catering as an essential component of their events, other customers may not require this functionality. The extension is designed to accommodate both scenarios seamlessly,
 enabling tenant-specific configurations without disrupting the core application's functionality for other users.
+
 
 This story highlights:
 
@@ -60,7 +63,7 @@ This extension ensures a unified experience for managing both poetry slams and g
     <img src="./Tutorials/images/00_pra_pre_architecture.png" width="60%">  
 </p>
 
-The sample showcases how a side-by-side application benefits from using SAP BTP. The qualities relevant for enterprise-grade partner applications, supported by SAP BTP services and programming models, include
+The sample showcases how a side-by-side application benefits from using SAP BTP. The qualities relevant for enterprise-grade partner applications, supported by SAP BTP services and programming models are outlined in the image below.
 
 <p align="center">
     <img src="./Tutorials/images/00_end_user_representation.png" width="60%">  
@@ -73,14 +76,13 @@ The sample showcases how a side-by-side application benefits from using SAP BTP.
 The objective of this repository is to develop an extension that enhances the existing Poetry Slam Manager, allowing partners to incorporate customer-specific features such as customization of various user interface (UI) components and expanding the application's service capabilities.
 The key deliverables and scope of the project include:
 
-- Customer-Specific Fields and Features:
+- Customer-specific fields and features:
 
-    These fields will be added withing the existing UI and be editable by the customer. They are integrated seamlessly into   
-    the core application's functionality, ensuring consistency and user convenience. Enable Extension fields to the existing UI so that they can be edited in the context of the core application
+    These fields are added within the existing UI and can be edited by the customer. They are integrated seamlessly into the core application's functionality, ensuring consistency and user convenience. Enable extension fields to the existing UI so that they can be edited in the context of the core application.
 
-- Enhancements to the existing UI to accommodate new fields and features
+- Enhancements to the existing UI to accommodate new fields and features:
 
-    Creation of customer-specific entities to an existing services with new customer-specific UI to manage customer-specific entities.
+    Creation of customer-specific entities to existing services with new customer-specific UI to manage customer-specific entities.
 
 #### Functionality
 
@@ -89,23 +91,24 @@ The key deliverables and scope of the project include:
 
 ## Requirements
 
-The application is based on SAP Business Technology Platform (SAP BTP) and SAP ERP solutions. Therefore, here's what you need:
+The application is based on SAP BTP and SAP ERP solutions. Therefore, here's what you need:
 
-- An SAP BTP account, which includes SAP Business Application Studio as a standardized development environment,
+- A SAP BTP account, which includes SAP Business Application Studio as a standardized development environment,
 - GitHub as your code repository,
-- an SAP ERP system and
-- fully deployed [Partner Reference Application](https://github.com/SAP-samples/partner-reference-application.git) in a provider account and a subscriber account
+- a SAP ERP system and
+- a fully deployed [Partner Reference Application](https://github.com/SAP-samples/partner-reference-application.git) in a provider account and a subscriber account.
 
-To get a more detailed list of the required entitlements, the proposed structure of subaccounts for the deployed Partner Reference Application, and the scaling effects of the multi-tenant solution, go to the [Bill of Materials](Tutorials/01-BillOfMaterials.md).
+To get a more detailed list of the required entitlements, the proposed structure of subaccounts for the deployed Partner Reference Application, and the scaling effects of the multi-tenant solution, go to the [Bill of Materials](./Tutorials/01-BillOfMaterials.md).
 
 ## Tutorials
 
 Add additional features and capabilities to the Poetry Slam Manager application to meet customer-specific requirements by leveraging on-stack extensions.
 
-1. [Learn about extensibility and get an overview of bill of materials](./Tutorials/01-BillOfMaterials.md)
-2. [Extend the data model to include custom entities and fields](./Tutorials/02-DataModelExtensibility.md)
-3. [Develop a Fiori UI to manage the custom entity.](./Tutorials/03-FioriUIForExtendedEntity.md)
-4. [Go on a guided tour to explore the capabilities of the sample extension](./Tutorials/04-GuidedTour.md)
+1. [To jump straight into deploying the extension application, refer to the Quick Start Guide.](./Tutorials/05-Quickstart.md)
+2. [Learn about extensibility and get an overview of bill of materials](./Tutorials/01-BillOfMaterials.md)
+3. [Extend the data model to include custom entities and fields](./Tutorials/02-DataModelExtensibility.md)
+4. [Develop a Fiori UI to manage the custom entity.](./Tutorials/03-FioriUIForExtendedEntity.md)
+5. [Go on a guided tour to explore the capabilities of the sample extension](./Tutorials/04-GuidedTour.md)
 
 ## More Information
 
@@ -123,4 +126,8 @@ This repository is provided "as-is", we don't offer support. For questions and c
 
 ## License
 
-Copyright (c) 2025 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
+Copyright (c) 2025 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](https://github.com/SAP-samples/partner-reference-application/blob/main/LICENSE) file.
+
+## Disclaimer
+
+This repository contains sample code provided “as‑is” for instructional purposes only. SAP makes no warranties and accepts no liability, except in cases of gross negligence or willful misconduct. All included data is fictitious and contains no real personal, confidential, or sensitive information. Do not use this tutorial app productively with real personal data. SAP is not responsible if anyone uses it to capture personal data.

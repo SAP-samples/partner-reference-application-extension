@@ -42,6 +42,7 @@
           <NavigationPropertyBinding Path="x_caterer" Target="x_Caterers"/>
           <NavigationPropertyBinding Path="toByDProject" Target="ByDProjects"/>
           <NavigationPropertyBinding Path="toS4HCProject" Target="S4HCProjects"/>
+          <NavigationPropertyBinding Path="toS4HCSalesOrderPartner" Target="S4HCSalesOrderPartner"/>
           <NavigationPropertyBinding Path="toB1PurchaseOrder" Target="B1PurchaseOrder"/>
           <NavigationPropertyBinding Path="SiblingEntity" Target="PoetrySlams"/>
         </EntitySet>
@@ -66,6 +67,7 @@
         </EntitySet>
         <EntitySet Name="ByDProjects" EntityType="PoetrySlamService.ByDProjects"/>
         <EntitySet Name="S4HCProjects" EntityType="PoetrySlamService.S4HCProjects"/>
+        <EntitySet Name="S4HCSalesOrderPartner" EntityType="PoetrySlamService.S4HCSalesOrderPartner"/>
         <EntitySet Name="B1PurchaseOrder" EntityType="PoetrySlamService.B1PurchaseOrder"/>
         <EntitySet Name="PoetrySlamStatusCodes" EntityType="PoetrySlamService.PoetrySlamStatusCodes">
           <NavigationPropertyBinding Path="texts" Target="PoetrySlamStatusCodes_texts"/>
@@ -121,12 +123,12 @@
         </NavigationProperty>
         <Property Name="projectID" Type="Edm.String"/>
         <Property Name="projectObjectID" Type="Edm.String"/>
-        <Property Name="projectURL" Type="Edm.String"/>
         <Property Name="projectSystem" Type="Edm.String"/>
         <Property Name="purchaseOrderID" Type="Edm.String"/>
         <Property Name="purchaseOrderObjectID" Type="Edm.String"/>
-        <Property Name="purchaseOrderURL" Type="Edm.String"/>
         <Property Name="purchaseOrderSystem" Type="Edm.String"/>
+        <Property Name="salesOrderID" Type="Edm.String"/>
+        <Property Name="jobStatusText" Type="Edm.String" MaxLength="255" DefaultValue="Job not triggered yet"/>
         <NavigationProperty Name="x_caterer" Type="PoetrySlamService.x_Caterers">
           <ReferentialConstraint Property="x_caterer_ID" ReferencedProperty="ID"/>
         </NavigationProperty>
@@ -139,12 +141,20 @@
         <Property Name="createS4HCProjectEnabled" Type="Edm.Boolean"/>
         <Property Name="projectProfileCodeText" Type="Edm.String"/>
         <Property Name="processingStatusText" Type="Edm.String"/>
+        <Property Name="projectURL" Type="Edm.String"/>
+        <Property Name="customerFullName" Type="Edm.String"/>
+        <Property Name="salesOrderURL" Type="Edm.String"/>
         <Property Name="isS4HC" Type="Edm.Boolean"/>
         <Property Name="createB1PurchaseOrderEnabled" Type="Edm.Boolean"/>
         <Property Name="purchaseOrderSystemName" Type="Edm.String"/>
+        <Property Name="purchaseOrderURL" Type="Edm.String"/>
         <Property Name="isB1" Type="Edm.Boolean"/>
+        <Property Name="isJobStatusShown" Type="Edm.Boolean"/>
         <NavigationProperty Name="toByDProject" Type="PoetrySlamService.ByDProjects"/>
         <NavigationProperty Name="toS4HCProject" Type="PoetrySlamService.S4HCProjects"/>
+        <NavigationProperty Name="toS4HCSalesOrderPartner" Type="PoetrySlamService.S4HCSalesOrderPartner">
+          <ReferentialConstraint Property="salesOrderID" ReferencedProperty="salesOrderUUID"/>
+        </NavigationProperty>
         <NavigationProperty Name="toB1PurchaseOrder" Type="PoetrySlamService.B1PurchaseOrder"/>
         <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
         <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
@@ -264,6 +274,13 @@
         <Property Name="projectEndDate" Type="Edm.Date"/>
         <Property Name="projectProfileCode" Type="Edm.String" MaxLength="7"/>
         <Property Name="processingStatus" Type="Edm.String" MaxLength="2"/>
+      </EntityType>
+      <EntityType Name="S4HCSalesOrderPartner">
+        <Key>
+          <PropertyRef Name="salesOrderUUID"/>
+        </Key>
+        <Property Name="salesOrderUUID" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="customer" Type="Edm.String" MaxLength="10"/>
       </EntityType>
       <EntityType Name="B1PurchaseOrder" OpenType="true">
         <Key>
@@ -420,6 +437,10 @@
         <ReturnType Type="PoetrySlamService.PoetrySlams"/>
       </Action>
       <Action Name="publish" IsBound="true" EntitySetPath="poetryslam">
+        <Parameter Name="poetryslam" Type="PoetrySlamService.PoetrySlams"/>
+        <ReturnType Type="PoetrySlamService.PoetrySlams"/>
+      </Action>
+      <Action Name="sendReminderForPoetrySlam" IsBound="true" EntitySetPath="poetryslam">
         <Parameter Name="poetryslam" Type="PoetrySlamService.PoetrySlams"/>
         <ReturnType Type="PoetrySlamService.PoetrySlams"/>
       </Action>
@@ -592,6 +613,22 @@
               </Annotation>
             </Record>
             <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Sponsoring Data"/>
+              <PropertyValue Property="ID" String="SalesOrderData"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#SalesOrderData"/>
+              <Annotation Term="UI.Hidden">
+                <Or>
+                  <Eq>
+                    <Path>salesOrderID</Path>
+                    <Null/>
+                  </Eq>
+                  <Not>
+                    <Path>isS4HC</Path>
+                  </Not>
+                </Or>
+              </Annotation>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
               <PropertyValue Property="Label" String="Project Data"/>
               <PropertyValue Property="ID" String="ProjectData"/>
               <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ProjectData"/>
@@ -618,6 +655,16 @@
               <PropertyValue Property="Label" String="Administrative Data"/>
               <PropertyValue Property="ID" String="AdministrativeData"/>
               <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#AdministrativeData"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Background Execution"/>
+              <PropertyValue Property="ID" String="BackgroundExecution"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#BackgroundExecution"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <Path>isJobStatusShown</Path>
+                </Not>
+              </Annotation>
             </Record>
           </Collection>
         </Annotation>
@@ -655,6 +702,17 @@
             </PropertyValue>
           </Record>
         </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="BackgroundExecution">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="jobStatusText"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
         <Annotation Term="UI.FieldGroup" Qualifier="GeneralData">
           <Record Type="UI.FieldGroupType">
             <PropertyValue Property="Data">
@@ -685,6 +743,28 @@
                 </Record>
                 <Record Type="UI.DataField">
                   <PropertyValue Property="Value" Path="freeVisitorSeats"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="SalesOrderData">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataFieldWithUrl">
+                  <PropertyValue Property="Value" Path="salesOrderID"/>
+                  <PropertyValue Property="Url" Path="salesOrderURL"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="Sponsoring Business Partner"/>
+                  <PropertyValue Property="Value" Path="toS4HCSalesOrderPartner/customer"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="customerFullName"/>
+                  <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
                 </Record>
               </Collection>
             </PropertyValue>
@@ -948,6 +1028,15 @@
                     <Path>createB1PurchaseOrderEnabled</Path>
                     <Path>IsActiveEntity</Path>
                   </And>
+                </Not>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataFieldForAction">
+              <PropertyValue Property="Action" String="PoetrySlamService.sendReminderForPoetrySlam"/>
+              <PropertyValue Property="Label" String="Send Event Reminder"/>
+              <Annotation Term="UI.Hidden">
+                <Not>
+                  <Path>IsActiveEntity</Path>
                 </Not>
               </Annotation>
             </Record>
@@ -1315,10 +1404,6 @@
         <Annotation Term="Common.Label" String="Project UUID"/>
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
-      <Annotations Target="PoetrySlamService.PoetrySlams/projectURL">
-        <Annotation Term="Common.Label" String="Project URL"/>
-        <Annotation Term="Core.Computed" Bool="true"/>
-      </Annotations>
       <Annotations Target="PoetrySlamService.PoetrySlams/projectSystem">
         <Annotation Term="Common.Label" String="System Type"/>
         <Annotation Term="Core.Computed" Bool="true"/>
@@ -1332,12 +1417,15 @@
         <Annotation Term="Common.Label" String="Purchase Order Internal ID"/>
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
-      <Annotations Target="PoetrySlamService.PoetrySlams/purchaseOrderURL">
-        <Annotation Term="Common.Label" String="Purchase Order URL"/>
-        <Annotation Term="Core.Computed" Bool="true"/>
-      </Annotations>
       <Annotations Target="PoetrySlamService.PoetrySlams/purchaseOrderSystem">
         <Annotation Term="Common.Label" String="Purchase Order System Type"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/salesOrderID">
+        <Annotation Term="Common.Label" String="Advertising Sales Order"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/jobStatusText">
+        <Annotation Term="Common.Label" String="Event Reminder Status"/>
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
       <Annotations Target="PoetrySlamService.PoetrySlams/x_caterer">
@@ -1407,6 +1495,18 @@
         <Annotation Term="Core.Computed" Bool="true"/>
         <Annotation Term="Common.Label" String="Processing Status"/>
       </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/projectURL">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Project URL"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/customerFullName">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Sponsoring Businesss Partner Name"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/salesOrderURL">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Sales Order URL"/>
+      </Annotations>
       <Annotations Target="PoetrySlamService.PoetrySlams/isS4HC">
         <Annotation Term="UI.Hidden" Bool="true"/>
         <Annotation Term="Core.Computed" Bool="true"/>
@@ -1419,7 +1519,15 @@
         <Annotation Term="Core.Computed" Bool="true"/>
         <Annotation Term="Common.Label" String="System Name"/>
       </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/purchaseOrderURL">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Purchase Order URL"/>
+      </Annotations>
       <Annotations Target="PoetrySlamService.PoetrySlams/isB1">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.PoetrySlams/isJobStatusShown">
         <Annotation Term="UI.Hidden" Bool="true"/>
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
@@ -1454,6 +1562,18 @@
               <Collection>
                 <String>poetryslam/status_code</String>
                 <String>poetryslam/statusCriticality</String>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.sendReminderForPoetrySlam(PoetrySlamService.PoetrySlams)">
+        <Annotation Term="Common.SideEffects">
+          <Record Type="Common.SideEffectsType">
+            <PropertyValue Property="TargetProperties">
+              <Collection>
+                <String>poetryslam/isJobStatusShown</String>
+                <String>poetryslam/jobStatusText</String>
               </Collection>
             </PropertyValue>
           </Record>
@@ -1626,6 +1746,7 @@
           <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
         </Annotation>
         <Annotation Term="PersonalData.FieldSemantics" String="DataSubjectID"/>
+        <Annotation Term="UI.Hidden" Bool="true"/>
         <Annotation Term="Core.Computed" Bool="true"/>
         <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
       </Annotations>
@@ -1862,6 +1983,7 @@
       </Annotations>
       <Annotations Target="PoetrySlamService.Visits/ID">
         <Annotation Term="PersonalData.FieldSemantics" String="DataSubjectID"/>
+        <Annotation Term="UI.Hidden" Bool="true"/>
         <Annotation Term="Core.Computed" Bool="true"/>
         <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
         <Annotation Term="Common.Label" String="UUID"/>
@@ -1897,10 +2019,12 @@
         <Annotation Term="Common.Label" String="Changed By"/>
       </Annotations>
       <Annotations Target="PoetrySlamService.Visits/parent">
+        <Annotation Term="UI.Hidden" Bool="true"/>
         <Annotation Term="Common.Label" String="Poetry Slam UUID"/>
       </Annotations>
       <Annotations Target="PoetrySlamService.Visits/parent_ID">
         <Annotation Term="PersonalData.FieldSemantics" String="DataSubjectID"/>
+        <Annotation Term="UI.Hidden" Bool="true"/>
         <Annotation Term="Common.Label" String="Poetry Slam UUID"/>
       </Annotations>
       <Annotations Target="PoetrySlamService.Visits/visitor">
@@ -1964,6 +2088,7 @@
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
       <Annotations Target="PoetrySlamService.Visits/statusCriticality">
+        <Annotation Term="UI.Hidden" Bool="true"/>
         <Annotation Term="Core.Computed" Bool="true"/>
         <Annotation Term="Common.Label" String="statusCriticality"/>
       </Annotations>
@@ -2094,6 +2219,59 @@
       </Annotations>
       <Annotations Target="PoetrySlamService.S4HCProjects/projectUUID">
         <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.S4HCSalesOrderPartner">
+        <Annotation Term="Common.Label" String="Header Partner"/>
+        <Annotation Term="Common.SemanticKey">
+          <Collection>
+            <PropertyPath>PartnerFunction</PropertyPath>
+            <PropertyPath>SalesOrder</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Messages" Path="SAP__Messages"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.EntityContainer/S4HCSalesOrderPartner">
+        <Annotation Term="Capabilities.SearchRestrictions">
+          <Record Type="Capabilities.SearchRestrictionsType">
+            <PropertyValue Property="Searchable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="NonUpdatableNavigationProperties">
+              <Collection>
+                <NavigationPropertyPath>_SalesOrder</NavigationPropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="QueryOptions">
+              <Record Type="Capabilities.ModificationQueryOptionsType">
+                <PropertyValue Property="SelectSupported" Bool="true"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Core.OptimisticConcurrency">
+          <Collection>
+            <PropertyPath>_SalesOrder/LastChangeDateTime</PropertyPath>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.S4HCSalesOrderPartner/salesOrderUUID">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.IsUpperCase" Bool="true"/>
+        <Annotation Term="Common.Label" String="Sales Order"/>
+        <Annotation Term="Common.Heading" String="SO"/>
+      </Annotations>
+      <Annotations Target="PoetrySlamService.S4HCSalesOrderPartner/customer">
+        <Annotation Term="Common.IsUpperCase" Bool="true"/>
+        <Annotation Term="Common.Label" String="Customer"/>
+        <Annotation Term="Common.QuickInfo" String="Customer Number"/>
+        <Annotation Term="Common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=KUNNR"/>
       </Annotations>
       <Annotations Target="PoetrySlamService.PoetrySlamStatusCodes">
         <Annotation Term="UI.Identification">
