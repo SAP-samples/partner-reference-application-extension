@@ -1,6 +1,6 @@
 # Learn About Extensibility and get an Overview of Bill of Materials
 
-Extensibility is the ability to serve multiple customers from a single deployment of an application and adopting it to the individual needs of the customer. Any extension is strictly separated from the core application and other customers, which allows seamless upgrades on the one hand and strict isolation of functionality on the other.
+The use case focuses on extending a multi-tenant CAP application to serve multiple customers from a single deployment while enabling adaptation of the application to the individual needs of each customer. Any extension is strictly separated from the core application and other customers, which allows seamless upgrades on the one hand and strict isolation of functionality on the other.
 
 On this version of the _Poetry Slam Manager (PSM)_, the Partner Reference Application (PRA) uses a single deployment to a provider subaccount and subscriptions to this deployment in (one or more) subscriber subaccounts. In the subscriber subaccount, the customer-specific extensions can be deployed to adopt the standard solution to the individual needs.
 
