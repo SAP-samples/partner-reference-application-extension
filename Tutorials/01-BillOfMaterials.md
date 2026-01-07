@@ -6,7 +6,7 @@ On this version of the _Poetry Slam Manager (PSM)_, the Partner Reference Applic
 
 ## Prerequisites
 
-To proceed with on-stack extensibility, you need the extensibility-enabled multi-tenant PSM application. For more information, refer to the [Partner Reference Application Tutorial - Poetry Slam Manager application with extensibility](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/50-Multi-Tenancy-Features-Tenant-Extensibility.md).
+To proceed with on-stack extensibility, you need the extensibility-enabled multi-tenant PSM application.For more information, refer to the [Partner Reference Application Tutorial - Poetry Slam Manager application with extensibility](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/50-Multi-Tenancy-Features-Tenant-Extensibility.md).
 
 For bill of materials, refer to the [Partner Reference Application Tutorial - Learn about multitenancy and get an overview of the bill of materials](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/20-Multi-Tenancy-BillOfMaterials.md). Here, you're exploring the additional resources and materials needed, based on the linked tutorial from the Partner Reference Application, to implement on-stack extensibility.
 
