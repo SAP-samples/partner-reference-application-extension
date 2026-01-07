@@ -1,12 +1,12 @@
 # Learn About Extensibility and get an Overview of Bill of Materials
 
-Extensibility is the ability to serve multiple customers from a single deployment of an application and adopting it to the individual needs of the customer. Any extension is strictly separated from the core application and other customers, which allows seamless upgrades on the one hand and strict isolation of functionality on the other.
+The use case focuses on extending a multi-tenant CAP application to serve multiple customers from a single deployment while enabling adaptation of the application to the individual needs of each customer. Any extension is strictly separated from the core application and other customers, which allows seamless upgrades on the one hand and strict isolation of functionality on the other.
 
 On this version of the _Poetry Slam Manager (PSM)_, the Partner Reference Application (PRA) uses a single deployment to a provider subaccount and subscriptions to this deployment in (one or more) subscriber subaccounts. In the subscriber subaccount, the customer-specific extensions can be deployed to adopt the standard solution to the individual needs.
 
 ## Prerequisites
 
-To proceed with on-stack extensibility, you need the extensibility-enabled multi-tenant PSM application. For more information, refer to the [Partner Reference Application Tutorial - Poetry Slam Manager application with extensibility](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/50-Multi-Tenancy-Features-Tenant-Extensibility.md).
+To proceed with on-stack extensibility, you need the extensibility-enabled multi-tenant PSM application.For more information, refer to the [Partner Reference Application Tutorial - Poetry Slam Manager application with extensibility](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/50-Multi-Tenancy-Features-Tenant-Extensibility.md).
 
 For bill of materials, refer to the [Partner Reference Application Tutorial - Learn about multitenancy and get an overview of the bill of materials](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/20-Multi-Tenancy-BillOfMaterials.md). Here, you're exploring the additional resources and materials needed, based on the linked tutorial from the Partner Reference Application, to implement on-stack extensibility.
 
