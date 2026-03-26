@@ -10,25 +10,48 @@
         "extension-allowlist": [
           {
             "for": [
-              "sap.samples.poetryslams.PoetrySlams",
-              "PoetrySlamService.PoetrySlams"
+              "*"
             ],
             "kind": "entity",
             "annotations": [
-              "@assert.integrity"
+              "*"
+            ],
+            "code": [
+              "CREATE",
+              "READ",
+              "UPDATE",
+              "DELETE",
+              "action",
+              "function"
             ]
           },
           {
             "for": [
               "sap.samples.poetryslams.Visitors"
             ],
-            "kind": "entity"
+            "kind": "entity",
+            "code": [
+              "CREATE",
+              "READ",
+              "UPDATE",
+              "DELETE",
+              "action",
+              "function"
+            ]
           },
           {
             "for": [
               "PoetrySlamService"
             ],
-            "kind": "service"
+            "kind": "service",
+            "code": [
+              "CREATE",
+              "READ",
+              "UPDATE",
+              "DELETE",
+              "action",
+              "function"
+            ]
           }
         ]
       }

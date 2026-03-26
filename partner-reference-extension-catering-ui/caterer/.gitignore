@@ -8,4 +8,3 @@ mta-*
 resources
 archive.zip
 .*_mta_build_tmp
-package-lock.json

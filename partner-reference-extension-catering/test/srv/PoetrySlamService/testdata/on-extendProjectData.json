@@ -1,0 +1,32 @@
+{
+    "ProjectRecord": 
+    {
+        "Project": 
+        {
+            "Project": "PRJ001",
+            "to_EnterpriseProjectElement": 
+            [
+                {
+                    "PlannedStartDate": "2025-01-01",
+                    "PlannedEndDate": "2025-12-31"
+                }
+            ]
+        }
+    },
+    "EmptyProjectRecord": 
+    {
+        "Project": 
+        {
+            "Project": "PRJ001",
+            "to_EnterpriseProjectElement": 
+            [
+            ]
+        }
+    },
+    "InvalidProjectRecord":{
+        "Project": "{ invalid JSON }"
+    },
+    "NullProjectRecord":{
+        "Project": null 
+    }
+}

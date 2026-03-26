@@ -122,11 +122,11 @@ ii.  [Capire extensibility documentation](https://cap.cloud.sap/docs/guides/exte
 
 ## Get Support
 
-This repository is provided "as-is", we don't offer support. For questions and comments, [join the SAP Community](https://community.sap.com/t5/forums/postpage/category-id/products/choose-node/true).
+This repository is provided "as-is", we don't offer support. For questions and comments, join the [SAP Community](https://community.sap.com/t5/forums/postpage/category-id/products/choose-node/true).
 
 ## License
 
-Copyright (c) 2025 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](https://github.com/SAP-samples/partner-reference-application-extension/blob/main/LICENSE) file.
+Copyright (c) 2026 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](https://github.com/SAP-samples/partner-reference-application-extension/blob/main/LICENSE) file.
 
 ## Disclaimer
 

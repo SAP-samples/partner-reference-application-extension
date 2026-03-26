@@ -182,7 +182,7 @@ Now that you have completed all the development and configurations, you can proc
    npm run deploy
    ```
 
-> Note: Looking for more details? Go to the [CAPire Documentation - Deploy to Cloud Foundry](https://cap.cloud.sap/docs/guides/deployment/to-cf).
+> Note: Looking for more details? Go to the [CAPire Documentation - Deploy to Cloud Foundry](https://cap.cloud.sap/docs/guides/deploy/to-cf).
 
 ## Configure SAP Build Work Zone
 
