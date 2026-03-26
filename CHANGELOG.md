@@ -1,18 +1,27 @@
 # Changes
 
-## Current Version - December 2025
+## Current Version - March 2026
 
 The tutorials and sample extension application code are available in the `main` branch.
 
 The current version includes:
+
+- [Business Logic Extensibility](./Tutorials/06-BusinessLogicExtensibility.md) integrates seamlessly with the CAP on SAP BTP. It enables developers to enhance service implementations by adding custom entity events, actions, and functions, while also leveraging predefined extension points provided by the base application to address specific extension requirements. Unique business requirements can be fulfilled using `@sap/cds-oyster` empowers partners to safely write and deploy custom code in a multi-tenant SaaS environment, allowing extensions such as custom calculations or input validations tailored to specific customer needs.
+
+
+## Older Versions
+
+### December 2025
+
+The tutorials and sample extension application code are available in the `main` branch.
+
+The 2512 version includes:
 
 - [Adding Role-Based Authorization](./Tutorials/02-DataModelExtensibility.md#adding-role-based-authorization): Role-based authorizations allowing the application to enforce access controls and permissions.
 - [Quickstart Guide](./Tutorials/05-Quickstart.md): Streamlined guide for rapid extension setup without detailed explanations.
 - Smaller corrections, improvements, and updates.
 
 Tag: [release-2512](https://github.com/SAP-samples/partner-reference-application-extension/releases/tag/release-2512)
-
-## Older Versions
 
 ### February 2025 (Initial Version)
 
