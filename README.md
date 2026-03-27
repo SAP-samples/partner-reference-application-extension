@@ -84,10 +84,15 @@ The key deliverables and scope of the project include:
 
     Creation of customer-specific entities to existing services with new customer-specific UI to manage customer-specific entities.
 
+- Business Logic Extensibility:
+
+    Enable partners to enhance service implementations by adding custom entity events, actions, and functions. Leverage predefined extension points provided by the base application to implement custom business logic such as validations, custom calculations, or integration logic tailored to specific customer needs.
+
 #### Functionality
 
 - Caterer Assignment: Assign caterers to specific poetry slam events and track their bookings.
 - Caterer Data Management: View, add, and manage caterer information, including contact details, cuisine specialties, and availability.
+- Business Logic Extensibility: Implement custom business logic to validate data between extensible requirements and the base application, and define extension points to integrate custom logic into the base application's workflows.
 
 ## Requirements
 
@@ -109,6 +114,7 @@ Add additional features and capabilities to the Poetry Slam Manager application 
 3. [Extend the data model to include custom entities and fields](./Tutorials/02-DataModelExtensibility.md)
 4. [Develop a Fiori UI to manage the custom entity.](./Tutorials/03-FioriUIForExtendedEntity.md)
 5. [Go on a guided tour to explore the capabilities of the sample extension](./Tutorials/04-GuidedTour.md)
+6. [Enable business Logic extensibility to implement custom validations and extension points](./Tutorials/06-BusinessLogicExtensibility.md)
 
 ## More Information
 
