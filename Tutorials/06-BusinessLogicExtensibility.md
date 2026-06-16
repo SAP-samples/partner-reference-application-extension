@@ -43,7 +43,7 @@ Business logic extensibility can only work in the extension application when the
 1.  Enable the base application for [business logic extensibility​](https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/50a-Multi-Tenancy-Features-Tenant-BusinessLogicExtensibility.md).
 ​
 2. Enable the extension application for business logic extensibility.​
-      1.  Extend the application configuration in the [package.json](../partner-reference-extension-catering/package.json#L34) file to the base application and enable code-extensibility. This enables the code sandbox in the project for the extension code:​
+      1.  Extend the application configuration in the [package.json](../partner-reference-extension-catering/package.json) file to the base application and enable code-extensibility. This enables the code sandbox in the project for the extension code:​
 
       ```
       "extends": "partner-reference-application",​
@@ -83,4 +83,4 @@ The base application integrates with multiple ERPs. One scenario is creating pro
 Provide an extension point in the base application’s project or task creation flow that allows the extension application to add additional tasks in SAP S/4HANA Cloud Public Edition after the base project is created.
 
 #### How to Achieve
-Let's do a deep dive into the application and see how this is achieved by following the [setup guide](./06b-BusinessLogicExtensibility_CustomExitUSeCase.md).
+Let's do a deep dive into the application and see how this is achieved by following the [setup guide](./06b-BusinessLogicExtensibility_CustomExitUseCase.md).
