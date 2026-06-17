@@ -114,7 +114,7 @@ Add additional features and capabilities to the Poetry Slam Manager application 
 3. [Extend the data model to include custom entities and fields](./Tutorials/02-DataModelExtensibility.md)
 4. [Develop a Fiori UI to manage the custom entity.](./Tutorials/03-FioriUIForExtendedEntity.md)
 5. [Go on a guided tour to explore the capabilities of the sample extension](./Tutorials/04-GuidedTour.md)
-6. [Enable business Logic extensibility to implement custom validations and extension points](./Tutorials/06-BusinessLogicExtensibility.md)
+6. [Enable business logic extensibility to implement custom validations and extension points](./Tutorials/06-BusinessLogicExtensibility.md)
 
 ## More Information
 

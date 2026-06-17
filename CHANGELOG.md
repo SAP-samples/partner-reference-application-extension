@@ -1,6 +1,12 @@
 # Changes
 
-## Current Version - March 2026
+## Current Version - June 2026
+
+- [Developed a Fiori UI for Custom Entities](./Tutorials/03-FioriUIForExtendedEntity.md) that helps developers create and onboard services without uploading complex EDMX structures or performing extensive manual configuration. By leveraging a Service Broker–based approach, the application dynamically retrieves OData metadata, automates service provisioning, and simplifies the overall development experience.
+
+## Older Versions
+
+### March 2026
 
 The tutorials and sample extension application code are available in the `main` branch.
 
@@ -8,8 +14,7 @@ The current version includes:
 
 - [Business Logic Extensibility](./Tutorials/06-BusinessLogicExtensibility.md) integrates seamlessly with the CAP on SAP BTP. It enables developers to enhance service implementations by adding custom entity events, actions, and functions, while also leveraging predefined extension points provided by the base application to address specific extension requirements. Unique business requirements can be fulfilled using `@sap/cds-oyster` empowers partners to safely write and deploy custom code in a multi-tenant SaaS environment, allowing extensions such as custom calculations or input validations tailored to specific customer needs.
 
-
-## Older Versions
+Tag: [release-2603](https://github.com/SAP-samples/partner-reference-application-extension/releases/tag/release-2603)
 
 ### December 2025
 
