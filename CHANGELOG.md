@@ -2,7 +2,7 @@
 
 ## Current Version - June 2026
 
-- [Develop a Fiori UI to manage the custom entity](./Tutorials/03-FioriUIForExtendedEntity.md) tutorial now uses a Service Broker-based approach to fetch OData metadata instead of manual EDMX upload. This eliminates static file dependencies and automates service provisioning.
+- [Developed a Fiori UI for Custom Entities](./Tutorials/03-FioriUIForExtendedEntity.md) that helps developers create and onboard services without uploading complex EDMX structures or performing extensive manual configuration. By leveraging a Service Broker–based approach, the application dynamically retrieves OData metadata, automates service provisioning, and simplifies the overall development experience.
 
 ## Older Versions
 
