@@ -21,7 +21,7 @@ It showcases the platform's flexibility and extensibility with features such as:
 
 #### Overview of Partner Reference Application
 
-[Partner Reference Application](https://github.com/SAP-samples/partner-reference-application.git) repository provides you with a “golden path” to becoming a SaaS provider of 
+[Partner Reference Application](https://github.com/SAP-samples/partner-reference-application.git) repository provides you with a "golden path" to becoming a SaaS provider of 
 multi-tenant applications based on SAP BTP. The guidance covers building, running, and integrating scalable full-stack cloud applications. 
 It includes an ERP-agnostic design that lets you deliver your application as a side-by-side extension to consumers using any SAP solution, such as SAP S/4HANA Cloud, SAP Business One, 
 and SAP Business ByDesign.
@@ -115,6 +115,7 @@ Add additional features and capabilities to the Poetry Slam Manager application 
 4. [Develop a Fiori UI to manage the custom entity.](./Tutorials/03-FioriUIForExtendedEntity.md)
 5. [Go on a guided tour to explore the capabilities of the sample extension](./Tutorials/04-GuidedTour.md)
 6. [Enable business logic extensibility to implement custom validations and extension points](./Tutorials/06-BusinessLogicExtensibility.md)
+7. [Troubleshooting guide for extension application](./Tutorials/07-TroubleshootingGuide.md)
 
 ## More Information
 
@@ -136,4 +137,4 @@ Copyright (c) 2026 SAP SE or an SAP affiliate company. All rights reserved. This
 
 ## Disclaimer
 
-This repository contains sample code provided “as‑is” for instructional purposes only. SAP makes no warranties and accepts no liability, except in cases of gross negligence or willful misconduct. All included data is fictitious and contains no real personal, confidential, or sensitive information. Do not use this tutorial app productively with real personal data. SAP is not responsible if anyone uses it to capture personal data.
+This repository contains sample code provided "as‑is" for instructional purposes only. SAP makes no warranties and accepts no liability, except in cases of gross negligence or willful misconduct. All included data is fictitious and contains no real personal, confidential, or sensitive information. Do not use this tutorial app productively with real personal data. SAP is not responsible if anyone uses it to capture personal data.

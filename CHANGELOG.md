@@ -1,10 +1,14 @@
 # Changes
 
-## Current Version - June 2026
+## Current Version - July 2026
 
-- [Developed a Fiori UI for Custom Entities](./Tutorials/03-FioriUIForExtendedEntity.md) that helps developers create and onboard services without uploading complex EDMX structures or performing extensive manual configuration. By leveraging a Service Broker–based approach, the application dynamically retrieves OData metadata, automates service provisioning, and simplifies the overall development experience.
+- [Troubleshooting Guide](./Tutorials/07-TroubleshootingGuide.md) added to help developers diagnose and resolve common issues encountered during extension app development and deployment.
 
 ## Older Versions
+
+### June 2026
+
+- [Developed an SAP Fiori UI for Custom Entities](./Tutorials/03-FioriUIForExtendedEntity.md) that helps developers create and onboard services without uploading complex EDMX structures or performing extensive manual configuration. By using a service broker–based approach, the application dynamically retrieves OData metadata, automates service provisioning, and simplifies the overall development experience.
 
 ### March 2026
 
